@@ -4,53 +4,62 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float playerSpeed = 5f;
-    private float activeMoveSpeed;
-    public float dashSpeed;
+    [SerializeField] private float playerSpeed;
+    private float mx, my;
 
-    public float dashLength = 5f, dashCooldown = 1f;
-    private float dashCounter;
-    private float dashCoolCounter;
+    [SerializeField] private float dashSpeed;
+    [SerializeField]private float dashLength;
+    [SerializeField]private float dashCooldown;
+    [SerializeField]private float dashCounter;
+    [SerializeField]private float dashCoolCounter;
 
-  
-    
+    private Rigidbody2D rb;
+    [SerializeField]private Camera cam;
 
-
-
-    public Rigidbody2D rb;
-    public Camera cam;
-
-
- 
-    Vector2 movement;
-    Vector2 mousePos;
+    private Vector2 mousePos;
+    GrappleHook gh;
      
     // Start is called before the first frame update
     void Start()
     {
-        activeMoveSpeed = playerSpeed;
+        gh = GetComponent<GrappleHook>();
+        rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(Movement());
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = angle;
+        if(gh.retracting)
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
+    IEnumerator Movement()
+    {
+        while(true)
+        {
+            mx = Input.GetAxisRaw("Horizontal");
+            my = Input.GetAxisRaw("Vertical");
+            rb.velocity = new Vector2(mx, my).normalized * playerSpeed;
 
-        movement.Normalize();
-
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        rb.velocity = movement * activeMoveSpeed;
-        
-
+            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            
+            Dash();
+            yield return null;
+        }
+    }
+    void Dash()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (dashCoolCounter <= 0 && dashCounter <= 0)
             {
-                activeMoveSpeed = dashSpeed;
+                playerSpeed = dashSpeed;
                 dashCounter = dashLength;
 
-                Debug.Log("spacebar");
                     
             }
         }
@@ -61,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (dashCounter <= 0)
             {
-                activeMoveSpeed = playerSpeed;
+                playerSpeed = 5f;
                 dashCoolCounter = dashCooldown;
 
             }
@@ -70,16 +79,5 @@ public class PlayerMovement : MonoBehaviour
         {
             dashCoolCounter -= Time.deltaTime; 
         }
-     
-
-        
-      
-    }
-    void FixedUpdate()
-    {
-        
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
     }
 }
