@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6244899996581169162, guid: 993d74f1c92bec140a55b6b7d6d360f4, type: 3}
   moveSpeed: 3
+  sceneToLoad: FirstScene
