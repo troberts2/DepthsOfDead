@@ -12,6 +12,9 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private GameObject harpoon;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Animator animator;
+    [SerializeField] private bool canHit = true;
+    [SerializeField] private GameObject attackPrefab;
+    private GameObject attacki;
 
     private bool isGrappling = false;
     [HideInInspector] public bool retracting = false;
@@ -28,6 +31,7 @@ public class GrappleHook : MonoBehaviour
     }
     void Update()
     {
+        attack();
         //shoots grapple if not already grappling
         if(Input.GetMouseButtonDown(0) && !isGrappling) 
         {
@@ -52,13 +56,22 @@ public class GrappleHook : MonoBehaviour
             line.SetPosition(1, targetObj.transform.position);
             impHarpoon.transform.position = targetObj.transform.position;
 
-            if(Vector2.Distance(transform.position, targetObj.transform.position) < 1f)
+            if(Vector2.Distance(transform.position, targetObj.transform.position) < 2f)
             {
+                Debug.Log("r pressed");
                 Destroy(impHarpoon);
                 retracting = false;
                 isGrappling = false;
                 line.enabled = false;
             }
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("r pressed");
+            Destroy(impHarpoon);
+            retracting = false;
+            isGrappling = false;
+            line.enabled = false;
         }
     }
 
@@ -106,29 +119,36 @@ public class GrappleHook : MonoBehaviour
             line.SetPosition(0, transform.position);
             line.SetPosition(1, targetObj.transform.position);
             impHarpoon.transform.position = targetObj.transform.position;
+            if(targetObj.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                if(Input.GetKeyDown(KeyCode.S)){
+                isPulling = true;
+                done = true;
+                }
+            }
             if(Input.GetKeyDown(KeyCode.W)){
                 isPulling = false;
-                done = true;
-            }
-            if(Input.GetKeyDown(KeyCode.S)){
-                isPulling = true;
                 done = true;
             }
             yield return null;
         }
         retracting = true;
     }
-    /*IEnumerator meleeAttack()
+    IEnumerator attackRate()
     {
-        while(true)
-        {
-            if(Input.GetKeyDown(KeyCode.F))
-            {
-                animator.SetTrigger("attack");
-                yield return new WaitForSeconds(.25f);
-            } 
-            
-        }
+        canHit = false;
 
-    }*/
+        yield return new WaitForSeconds(0.25f);
+        Destroy(attacki);
+        canHit = true;
+    }
+    void attack()
+    {
+        
+        if(Input.GetKey(KeyCode.F) && canHit)
+        {
+            attacki = Instantiate(attackPrefab, shootPoint.position, transform.rotation);
+            StartCoroutine(attackRate());
+        }
+    }
 }

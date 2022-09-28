@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MeleeEnemyBehaviour : MonoBehaviour
 {
-    public GameObject player;
-    public float moveSpeed = 3;
+    [SerializeField] private Transform player;
+    [SerializeField] private float moveSpeed = 3;
     public string sceneToLoad;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerController>().gameObject;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -28,11 +28,15 @@ public class MeleeEnemyBehaviour : MonoBehaviour
             RestartGame();
 
         }
+        if(collision.gameObject.CompareTag("attack"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void FollowPlayer()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
     }
 
     private void RestartGame()
