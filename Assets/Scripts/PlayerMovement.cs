@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         gh = GetComponent<GrappleHook>();
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Movement());
