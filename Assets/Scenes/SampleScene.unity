@@ -928,6 +928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square
       objectReference: {fileID: 0}
+    - target: {fileID: 4651372379871967717, guid: 6f8fd620ac709394ba33cb73a872530b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8542987993778393805, guid: 6f8fd620ac709394ba33cb73a872530b, type: 3}
       propertyPath: m_RootOrder
       value: 1
