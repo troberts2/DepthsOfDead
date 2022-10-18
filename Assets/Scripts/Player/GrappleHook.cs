@@ -6,15 +6,14 @@ public class GrappleHook : MonoBehaviour
 {
     LineRenderer line;
     [SerializeField] private LayerMask grapplableMask;
-    [SerializeField] private float maxDist = 100f;
+    [SerializeField] private float maxDist = 10f;
     [SerializeField] private float grappleSpeed = 10f;
     [SerializeField] private float grappleShootSpeed = 20f;
     [SerializeField] private GameObject harpoon;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Animator animator;
-    [SerializeField] private bool canHit = true;
-    [SerializeField] private GameObject attackPrefab;
-    private GameObject attacki;
+    private Transform player;
+    public bool canHit = true;
 
     private bool isGrappling = false;
     [HideInInspector] public bool retracting = false;
@@ -23,15 +22,23 @@ public class GrappleHook : MonoBehaviour
     private GameObject targetObj;
     private GameObject impHarpoon;
     private bool isPulling;
+    private Vector2 mousePos;
+    private Rigidbody2D rb;
+    private Camera cam;
 
     void Start()
     {
         line = GetComponent<LineRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        cam = Camera.main;
+        player = GameObject.FindWithTag("Player").transform;
         //StartCoroutine(meleeAttack());
     }
     void Update()
     {
-        attack();
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         //shoots grapple if not already grappling
         if(Input.GetMouseButtonDown(0) && !isGrappling) 
         {
@@ -49,14 +56,14 @@ public class GrappleHook : MonoBehaviour
             }else
             {
                 grapplePos = Vector2.Lerp(transform.position, targetObj.transform.position, grappleSpeed * Time.deltaTime);
-                transform.position = grapplePos;
+                player.position = grapplePos;
             }
 
             line.SetPosition(0, transform.position);
             line.SetPosition(1, targetObj.transform.position);
             impHarpoon.transform.position = targetObj.transform.position;
 
-            if(Vector2.Distance(transform.position, targetObj.transform.position) < 2f)
+            if(Vector2.Distance(player.position, targetObj.transform.position) < 1f)
             {
                 Debug.Log("r pressed");
                 Destroy(impHarpoon);
@@ -133,22 +140,5 @@ public class GrappleHook : MonoBehaviour
             yield return null;
         }
         retracting = true;
-    }
-    IEnumerator attackRate()
-    {
-        canHit = false;
-
-        yield return new WaitForSeconds(0.25f);
-        Destroy(attacki);
-        canHit = true;
-    }
-    void attack()
-    {
-        
-        if(Input.GetKey(KeyCode.F) && canHit)
-        {
-            attacki = Instantiate(attackPrefab, shootPoint.position, transform.rotation);
-            StartCoroutine(attackRate());
-        }
     }
 }
