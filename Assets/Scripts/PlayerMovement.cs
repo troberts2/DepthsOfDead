@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
+    [SerializeField] private int playerHealth = 6;
+    private bool iframes = false;
     private float mx, my;
 
     [SerializeField] private float dashSpeed;
@@ -80,5 +82,27 @@ public class PlayerMovement : MonoBehaviour
         {
             dashCoolCounter -= Time.deltaTime; 
         }
+    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.CompareTag("Enemy") && !iframes)
+        {
+            StartCoroutine(TakeDamage(1));
+        }
+        if(collider.CompareTag("EnemyAttack") && !iframes)
+        {
+            StartCoroutine(TakeDamage(1));
+        }
+    }
+
+    IEnumerator TakeDamage(int amt){
+        playerHealth -= amt;
+        iframes = true;
+        if(playerHealth < 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+        yield return new WaitForSeconds(.5f);
+        iframes = false;
     }
 }
