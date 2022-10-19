@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 4.4
-  Target: {fileID: 3090329819629840560, guid: 993d74f1c92bec140a55b6b7d6d360f4, type: 3}
+  Target: {fileID: 3091036538801072665, guid: 9bb67399d2751b44f91a4c2b5c4b5183, type: 3}
   Rotator: {fileID: 3158042411987039101}
   Bullet: {fileID: 437576075748183932, guid: 48b9283097e3e0b459cfd01ce133f178, type: 3}
   FireRate: 1.2

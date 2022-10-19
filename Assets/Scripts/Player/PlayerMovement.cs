@@ -6,8 +6,9 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed;
-    [SerializeField] private int playerHealth = 6;
+    public float playerSpeed = 5;
+    public int playerHealth = 6;
+    public int baseDamage = 1;
     private bool iframes = false;
     private float mx, my;
 
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float dashCooldown;
     [SerializeField]private float dashCounter;
     [SerializeField]private float dashCoolCounter;
+    [SerializeField] private GameObject[] upgradesList;
     public TextMeshProUGUI livesText;
 
     private Rigidbody2D rb;
@@ -111,6 +113,25 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(TakeDamage(1));
         }
+        if(collider.CompareTag("upgrade")){
+            if(collider.name == ("DamageUPG(Clone)")){
+                baseDamage++;
+                clearUpgrades();
+            }
+            if(collider.name == ("HealthUPG(Clone)")){
+                playerHealth++;
+                clearUpgrades();
+            }
+            if(collider.name == ("SpeedUPG(Clone)")){
+                playerSpeed++;
+                clearUpgrades();
+            }
+        }
+    }
+    void clearUpgrades(){
+        GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
+        foreach(GameObject upgrade in upgrades)
+        GameObject.Destroy(upgrade);
     }
 
     IEnumerator TakeDamage(int amt){
