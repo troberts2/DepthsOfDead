@@ -111,6 +111,14 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(TakeDamage(1));
         }
+<<<<<<< Updated upstream
+=======
+    }
+    void clearUpgrades(){
+        GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
+        foreach(GameObject upgrade in upgrades)
+        GameObject.Destroy(upgrade);
+>>>>>>> Stashed changes
     }
 
     IEnumerator TakeDamage(int amt){
