@@ -19,23 +19,4 @@ public class Enemy : MonoBehaviour
     {
         
     }
-    IEnumerator TakeDamage()
-    {
-        Color ogColor = GetComponent<SpriteRenderer>().color;
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        bool done = false;
-        health--;
-        while(!done)
-        {
-            sr.color = Color.red;
-            yield return new WaitForSeconds(.5f);
-            done = true;
-            sr.color = ogColor;
-        }
-
-        if(health < 1)
-        {
-            Destroy(gameObject);
-        }
-    }
 }

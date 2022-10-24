@@ -17,10 +17,7 @@ public class RoomSpawner : MonoBehaviour
     }
     public void ScenePickRandom()
     {
-        int index = Random.Range(0, 3);
-        while(index == SceneManager.GetActiveScene().buildIndex){
-            index = Random.Range(0, 3);
-        }
+        int index = Random.Range(1, 5);
         SceneManager.LoadScene(index);
         
         
