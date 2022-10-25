@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-<<<<<<< Updated upstream
-=======
     private GameObject[] enemies;
     [SerializeField] GameObject[] upgrades;
     public GameObject canvas;
@@ -13,7 +11,6 @@ public class GameController : MonoBehaviour
     private bool cardsDropped = false;
     [SerializeField] private GameObject door;
     [SerializeField] private PlayerMovement pm;
->>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +21,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         Debugger();
-<<<<<<< Updated upstream
-=======
         player = GameObject.FindGameObjectWithTag("Player").transform;
         if(GameObject.FindGameObjectWithTag("Enemy") == null && !cardsDropped){
             cardsDropped = true;
@@ -37,7 +32,6 @@ public class GameController : MonoBehaviour
             Instantiate(door, new Vector2(player.position.x, player.position.y + 2), Quaternion.identity);
         }
 
->>>>>>> Stashed changes
     }
 
     void Debugger(){

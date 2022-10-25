@@ -167,7 +167,6 @@ GameObject:
   - component: {fileID: 5210723732008236125}
   - component: {fileID: 3719709307849261404}
   - component: {fileID: 6563685023744144730}
-  - component: {fileID: 8706794448659562514}
   m_Layer: 2
   m_Name: Player 1
   m_TagString: Player
@@ -280,6 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   playerHealth: 6
+  baseDamage: 1
   dashSpeed: 40
   dashLength: 0.2
   dashCooldown: 0.5
@@ -457,20 +457,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &8706794448659562514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924399491194164040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 496b1c2fb7a2ffb4faad04c2208f7659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 5
-  knockTime: 0.4
 --- !u!1 &8706794448665290788
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +533,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1600, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -696,7 +682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.980011, y: 0}
+  m_AnchoredPosition: {x: 5.9799805, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8706794449722116542

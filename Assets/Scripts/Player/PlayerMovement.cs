@@ -6,8 +6,9 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed;
-    [SerializeField] private int playerHealth = 6;
+    [SerializeField] public float playerSpeed;
+    [SerializeField] public int playerHealth = 6;
+    public int baseDamage = 1;
     private bool iframes = false;
     private float mx, my;
 
@@ -111,14 +112,6 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(TakeDamage(1));
         }
-<<<<<<< Updated upstream
-=======
-    }
-    void clearUpgrades(){
-        GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
-        foreach(GameObject upgrade in upgrades)
-        GameObject.Destroy(upgrade);
->>>>>>> Stashed changes
     }
 
     IEnumerator TakeDamage(int amt){
