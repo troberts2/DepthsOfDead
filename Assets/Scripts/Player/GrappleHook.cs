@@ -63,9 +63,8 @@ public class GrappleHook : MonoBehaviour
             line.SetPosition(1, targetObj.transform.position);
             impHarpoon.transform.position = targetObj.transform.position;
 
-            if(Vector2.Distance(player.position, targetObj.transform.position) < 1f)
+            if(Vector2.Distance(player.position, targetObj.transform.position) < 1.5f)
             {
-                Debug.Log("r pressed");
                 Destroy(impHarpoon);
                 retracting = false;
                 isGrappling = false;
@@ -109,11 +108,20 @@ public class GrappleHook : MonoBehaviour
         line.SetPosition(1, transform.position);
 
         Vector2 newPos;
-        impHarpoon = Instantiate(harpoon, shootPoint.position, transform.rotation);
+        Vector3 targ = targetObj.transform.position;
+        targ.z = 0f;
+ 
+        Vector3 objectPos = transform.position;
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+ 
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg - 90;
+        impHarpoon = Instantiate(harpoon, shootPoint.position, Quaternion.identity);
+        impHarpoon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         //this is the part that send the line renderer
         for(; t< time; t += grappleShootSpeed * Time.deltaTime)
         {
-            newPos = Vector2.Lerp(transform.position, targetObj.transform.position, t / time);
+            newPos = Vector2.Lerp(transform.position, target, t / time);
             impHarpoon.transform.position = newPos;
             line.SetPosition(0, transform.position);
             line.SetPosition(1, newPos);
@@ -124,8 +132,8 @@ public class GrappleHook : MonoBehaviour
         while(!done)
         {
             line.SetPosition(0, transform.position);
-            line.SetPosition(1, targetObj.transform.position);
-            impHarpoon.transform.position = targetObj.transform.position;
+            line.SetPosition(1, target);
+            impHarpoon.transform.position = target;
             if(targetObj.layer == LayerMask.NameToLayer("Enemy"))
             {
                 if(Input.GetKeyDown(KeyCode.S)){
