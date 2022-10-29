@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class RoomSpawner : MonoBehaviour
 {
-
     public int currentScene;
-
+    void Start(){
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -15,9 +16,16 @@ public class RoomSpawner : MonoBehaviour
             ScenePickRandom();
         }
     }
+    public void OnDisable()
+    {
+        Debug.Log("debug");
+    }
     public void ScenePickRandom()
     {
         int index = Random.Range(1, 5);
+        while(index == currentScene){
+            index = Random.Range(1, 5);
+        }
         SceneManager.LoadScene(index);
         
         

@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private bool canHit = true;
     private GameObject attacki;
     [SerializeField]private GameObject attackPrefab;
-    [SerializeField]private Transform shootPoint;
      
     // Start is called before the first frame update
     void Start()
@@ -141,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(Input.GetKey(KeyCode.F) && canHit)
         {
-            attacki = Instantiate(attackPrefab, shootPoint.position, transform.rotation);
+            attacki = Instantiate(attackPrefab, transform.position, transform.rotation);
             StartCoroutine(attackRate());
         }
     }

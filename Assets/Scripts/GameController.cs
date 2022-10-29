@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private Vector2 doorPos;
     private GameObject[] enemies;
     [SerializeField] GameObject[] upgrades;
     public GameObject canvas;
     [SerializeField] Transform player;
     private bool cardsDropped = false;
-    [SerializeField] private GameObject door;
+    [SerializeField]private GameObject door;
     [SerializeField] private PlayerMovement pm;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,6 @@ public class GameController : MonoBehaviour
             upgrade1.transform.SetParent(canvas.transform, false);
             GameObject upgrade2 = Instantiate(upgrades[Random.Range(0, upgrades.Length)], new Vector2(925, 75), Quaternion.identity);
             upgrade2.transform.SetParent(canvas.transform, false);
-            Instantiate(door, new Vector2(player.position.x, player.position.y + 2), Quaternion.identity);
         }
 
     }
@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
         GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
         foreach(GameObject upgrade in upgrades)
         GameObject.Destroy(upgrade);
+        InstantiateDoor();
     }
 
     public void AddDamage(){
@@ -65,5 +66,9 @@ public class GameController : MonoBehaviour
         Debug.Log("speed+");
         pm.playerSpeed++;
         clearUpgrades();
+    }
+    void InstantiateDoor(){
+        door.SetActive(true);
+        Debug.Log("door should appear");
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileEnemy : Enemy
 {
+    [SerializeField]private GameObject fishProjectile;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,9 @@ public class ProjectileEnemy : Enemy
             }
         }else{
             anim.SetBool("wakeUp", false);
+            if(Vector3.Distance(target.position, transform.position) <= attackRadius){
+                //Attack();
+            }
 
         }
     }
@@ -81,4 +85,17 @@ public class ProjectileEnemy : Enemy
             currentState = newState;
         }
     }
+    /*IEnumerator Attack(){
+        bool canShoot = true;
+        Vector3 targ = target.transform.position;
+        targ.z = 0f;
+ 
+        Vector3 objectPos = transform.position;
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+ 
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg - 90;
+        GameObject fish = Instantiate(fishProjectile, transform.position, Quaternion.identity);
+        fish.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }*/
 }

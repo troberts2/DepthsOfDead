@@ -44,7 +44,9 @@ public class GrappleHook : MonoBehaviour
         {
             StartGrapple();
         }
-
+        if(impHarpoon != null){
+            impHarpoon.transform.position = targetObj.transform.position;
+        }
         if(retracting)
         {
             Vector2 grapplePos;
@@ -121,7 +123,7 @@ public class GrappleHook : MonoBehaviour
         //this is the part that send the line renderer
         for(; t< time; t += grappleShootSpeed * Time.deltaTime)
         {
-            newPos = Vector2.Lerp(transform.position, target, t / time);
+            newPos = Vector2.Lerp(transform.position, targetObj.transform.position, t / time);
             impHarpoon.transform.position = newPos;
             line.SetPosition(0, transform.position);
             line.SetPosition(1, newPos);
@@ -132,8 +134,8 @@ public class GrappleHook : MonoBehaviour
         while(!done)
         {
             line.SetPosition(0, transform.position);
-            line.SetPosition(1, target);
-            impHarpoon.transform.position = target;
+            line.SetPosition(1, targetObj.transform.position);
+            impHarpoon.transform.position = targetObj.transform.position;
             if(targetObj.layer == LayerMask.NameToLayer("Enemy"))
             {
                 if(Input.GetKeyDown(KeyCode.S)){

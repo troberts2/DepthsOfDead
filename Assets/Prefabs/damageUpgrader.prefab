@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7081577873194334600, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
+      - m_Target: {fileID: 5013096498435939508, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: AddDamage
         m_Mode: 1
