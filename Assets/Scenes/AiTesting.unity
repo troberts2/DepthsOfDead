@@ -163,7 +163,7 @@ MonoBehaviour:
   m_OverrideByGrid: 1
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 1
-  m_OverrideVector: {x: 1, y: 1, z: 1}
+  m_OverrideVector: {x: 1, y: 1, z: 0}
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -243,6 +243,14 @@ PrefabInstance:
     - target: {fileID: 8542987993778393805, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559467952747909677, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559467952747909677, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1019267667
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
@@ -406,7 +414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573906003}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -483,6 +491,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4760138863645594199, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4651372379871967717, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
       propertyPath: m_Name
       value: Zobster 1
@@ -532,8 +544,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8559467952747909677, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559467952747909677, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559467952747909677, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1019267667
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51eea6b752b156347a8b28054dd21b0d, type: 3}
