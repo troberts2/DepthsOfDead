@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileEnemy : Enemy
 {
     [SerializeField]private GameObject fishProjectile;
+    private bool canShoot = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +14,13 @@ public class ProjectileEnemy : Enemy
         rb = GetComponent<Rigidbody2D>();   
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        if(Vector3.Distance(target.position, transform.position) <= attackRadius && canShoot){
+            GameObject fish = Instantiate(fishProjectile, transform.position, Quaternion.identity);
+            StartCoroutine(FireRate());
+        }
+    }
     void FixedUpdate()
     {
         CheckDistance();
@@ -31,9 +38,6 @@ public class ProjectileEnemy : Enemy
             }
         }else{
             anim.SetBool("wakeUp", false);
-            if(Vector3.Distance(target.position, transform.position) <= attackRadius){
-                //Attack();
-            }
 
         }
     }
@@ -59,6 +63,17 @@ public class ProjectileEnemy : Enemy
     }
 
 
+    private void OnTriggerEnter2D (Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+
+        }
+        if(collision.CompareTag("attack"))
+        {
+            StartCoroutine(TakeDamage());
+        }
+    }
     IEnumerator TakeDamage()
     {
         Color ogColor = GetComponent<SpriteRenderer>().color;
@@ -85,17 +100,9 @@ public class ProjectileEnemy : Enemy
             currentState = newState;
         }
     }
-    /*IEnumerator Attack(){
-        bool canShoot = true;
-        Vector3 targ = target.transform.position;
-        targ.z = 0f;
- 
-        Vector3 objectPos = transform.position;
-        targ.x = targ.x - objectPos.x;
-        targ.y = targ.y - objectPos.y;
- 
-        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg - 90;
-        GameObject fish = Instantiate(fishProjectile, transform.position, Quaternion.identity);
-        fish.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-    }*/
+    IEnumerator FireRate(){
+        canShoot = false;
+        yield return new WaitForSeconds(2f);
+        canShoot = true;
+    }
 }

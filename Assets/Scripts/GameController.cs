@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ///// NEEED TO FIX THE CARDS
         Debugger();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         if(GameObject.FindGameObjectWithTag("Enemy") == null && !cardsDropped){
@@ -29,6 +30,10 @@ public class GameController : MonoBehaviour
             GameObject upgrade1 = Instantiate(upgrades[Random.Range(0, upgrades.Length)], new Vector2(225, 75), Quaternion.identity);
             upgrade1.transform.SetParent(canvas.transform, false);
             GameObject upgrade2 = Instantiate(upgrades[Random.Range(0, upgrades.Length)], new Vector2(925, 75), Quaternion.identity);
+            while(upgrade1 == upgrade2){
+                upgrade2 = Instantiate(upgrades[Random.Range(0, upgrades.Length)], new Vector2(925, 75), Quaternion.identity);
+                Debug.Log("card switched");
+            }
             upgrade2.transform.SetParent(canvas.transform, false);
         }
 
@@ -47,26 +52,6 @@ public class GameController : MonoBehaviour
         InstantiateDoor();
     }
 
-    public void AddDamage(){
-        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        Debug.Log("damage+");
-        pm.baseDamage++;
-        clearUpgrades();
-    }
-
-    public void AddHealth(){
-        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        Debug.Log("health+");
-        pm.playerHealth++;
-        clearUpgrades();
-    }
-
-    public void AddSpeed(){
-        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        Debug.Log("speed+");
-        pm.playerSpeed++;
-        clearUpgrades();
-    }
     void InstantiateDoor(){
         door.SetActive(true);
         Debug.Log("door should appear");

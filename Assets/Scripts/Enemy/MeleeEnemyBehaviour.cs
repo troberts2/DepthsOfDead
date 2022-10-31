@@ -30,7 +30,6 @@ public class MeleeEnemyBehaviour : Enemy
         if(collision.CompareTag("attack"))
         {
             StartCoroutine(TakeDamage());
-            Destroy(collision);
         }
     }
     void CheckDistance(){
@@ -75,7 +74,7 @@ public class MeleeEnemyBehaviour : Enemy
         SceneManager.LoadScene(sceneToLoad);
     }
 
-    IEnumerator TakeDamage()
+    public IEnumerator TakeDamage()
     {
         Color ogColor = GetComponent<SpriteRenderer>().color;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
