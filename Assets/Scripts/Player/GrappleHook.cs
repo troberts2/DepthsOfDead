@@ -44,7 +44,9 @@ public class GrappleHook : MonoBehaviour
         {
             StartGrapple();
         }
-
+        if(impHarpoon != null){
+            impHarpoon.transform.position = targetObj.transform.position;
+        }
         if(retracting)
         {
             Vector2 grapplePos;
@@ -63,9 +65,8 @@ public class GrappleHook : MonoBehaviour
             line.SetPosition(1, targetObj.transform.position);
             impHarpoon.transform.position = targetObj.transform.position;
 
-            if(Vector2.Distance(player.position, targetObj.transform.position) < 1f)
+            if(Vector2.Distance(player.position, targetObj.transform.position) < 1.5f)
             {
-                Debug.Log("r pressed");
                 Destroy(impHarpoon);
                 retracting = false;
                 isGrappling = false;
@@ -109,7 +110,16 @@ public class GrappleHook : MonoBehaviour
         line.SetPosition(1, transform.position);
 
         Vector2 newPos;
-        impHarpoon = Instantiate(harpoon, shootPoint.position, transform.rotation);
+        Vector3 targ = targetObj.transform.position;
+        targ.z = 0f;
+ 
+        Vector3 objectPos = transform.position;
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+ 
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg - 90;
+        impHarpoon = Instantiate(harpoon, shootPoint.position, Quaternion.identity);
+        impHarpoon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         //this is the part that send the line renderer
         for(; t< time; t += grappleShootSpeed * Time.deltaTime)
         {

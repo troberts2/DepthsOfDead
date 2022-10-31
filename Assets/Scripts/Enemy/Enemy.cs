@@ -2,12 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum EnemyState{
+    idle,
+    walk,
+    attack,
+    stagger
+}
 public class Enemy : MonoBehaviour
 {
+    public EnemyState currentState;
     public int health;
     public string enemyName;
     public int baseAttack;
     public float moveSpeed;
+    public Transform target;
+    public float chaseRadius;
+    public float attackRadius;
+    public Vector2 homePos;
+    public Animator anim;
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,24 +32,5 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
-    }
-    IEnumerator TakeDamage()
-    {
-        Color ogColor = GetComponent<SpriteRenderer>().color;
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        bool done = false;
-        health--;
-        while(!done)
-        {
-            sr.color = Color.red;
-            yield return new WaitForSeconds(.5f);
-            done = true;
-            sr.color = ogColor;
-        }
-
-        if(health < 1)
-        {
-            Destroy(gameObject);
-        }
     }
 }
