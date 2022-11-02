@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum playerState{
+    idle,
+    walk,
+    attack
+}
+
 public class PlayerMovement : MonoBehaviour
 {
-    public float playerSpeed = 5;
-    public int playerHealth = 6;
+    [SerializeField] private playerState currentState;
+    [SerializeField] public float playerSpeed;
+    [SerializeField] public int playerHealth = 5;
     public int baseDamage = 1;
+    public JsonSerializer Serializer;
     private bool iframes = false;
     private float mx, my;
 
@@ -17,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float dashCooldown;
     [SerializeField]private float dashCounter;
     [SerializeField]private float dashCoolCounter;
-    [SerializeField] private GameObject[] upgradesList;
     public TextMeshProUGUI livesText;
 
     private Rigidbody2D rb;
@@ -26,18 +33,18 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 mousePos;
     GrappleHook gh;
-    private bool canHit = true;
     private GameObject attacki;
     [SerializeField]private GameObject attackPrefab;
-    [SerializeField]private Transform shootPoint;
      
     // Start is called before the first frame update
     void Start()
     {
+        Serializer = GetComponent<JsonSerializer>();
         cam = Camera.main;
         gh = GetComponent<GrappleHook>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Serializer.Load();
         StartCoroutine(Movement());
     }
 
@@ -47,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-        attack();
         livesText.text = "Lives: " + playerHealth;
 
     }
@@ -60,14 +66,19 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(mx, my).normalized * playerSpeed;
 
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            if(mx != 0 || my !=0)
+            if(Input.GetKeyDown(KeyCode.F) && currentState != playerState.attack){
+                StartCoroutine(AttackCo());
+            }
+            else if(mx != 0 || my !=0)
             {
                 animator.SetFloat("moveX", mx);
                 animator.SetFloat("moveY", my);
                 animator.SetBool("moving", true);
+                ChangeState(playerState.walk);
             }else
             {
                 animator.SetBool("moving", false);
+                ChangeState(playerState.idle);
             }
             
             Dash();
@@ -105,33 +116,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.CompareTag("Enemy") && !iframes)
-        {
-            StartCoroutine(TakeDamage(1));
-        }
         if(collider.CompareTag("EnemyAttack") && !iframes)
         {
             StartCoroutine(TakeDamage(1));
         }
-        if(collider.CompareTag("upgrade")){
-            if(collider.name == ("DamageUPG(Clone)")){
-                baseDamage++;
-                clearUpgrades();
-            }
-            if(collider.name == ("HealthUPG(Clone)")){
-                playerHealth++;
-                clearUpgrades();
-            }
-            if(collider.name == ("SpeedUPG(Clone)")){
-                playerSpeed++;
-                clearUpgrades();
-            }
-        }
-    }
-    void clearUpgrades(){
-        GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
-        foreach(GameObject upgrade in upgrades)
-        GameObject.Destroy(upgrade);
     }
 
     IEnumerator TakeDamage(int amt){
@@ -148,21 +136,22 @@ public class PlayerMovement : MonoBehaviour
         sr.color = ogColor;
         iframes = false;
     }
-    IEnumerator attackRate()
-    {
-        canHit = false;
-
-        yield return new WaitForSeconds(0.25f);
-        Destroy(attacki);
-        canHit = true;
+    private IEnumerator AttackCo(){
+        animator.SetBool("attack", true);
+        ChangeState(playerState.attack);
+        yield return null;
+        animator.SetBool("attack", false);
+        yield return new WaitForSeconds(0.4f);
+        ChangeState(playerState.walk);
     }
-    void attack()
-    {
-        
-        if(Input.GetKey(KeyCode.F) && canHit)
-        {
-            attacki = Instantiate(attackPrefab, shootPoint.position, transform.rotation);
-            StartCoroutine(attackRate());
+    private void ChangeState(playerState newState){
+        if(currentState != newState){
+            currentState = newState;
         }
+    }
+    public void UpdateValues(int phealth, int pdamage, float pspeed){
+        playerHealth = phealth;
+        baseDamage = pdamage;
+        playerSpeed = pspeed;
     }
 }

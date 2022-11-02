@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7615769929493803932}
   - component: {fileID: -4760138863645594199}
   - component: {fileID: 125258520383122320}
+  - component: {fileID: -865313446840539892}
   m_Layer: 6
   m_Name: Zobster 1
   m_TagString: Enemy
@@ -148,15 +149,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d696eec75e877f46b0bff075976141f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   health: 5
   enemyName: Zobster
   baseAttack: 0
   moveSpeed: 2
   target: {fileID: 0}
   chaseRadius: 4
-  attackRadius: 1
+  attackRadius: 1.3
   homePos: {x: 0, y: 0}
-  enemyAttack: {fileID: 5631380129673281878, guid: 40966db09d4b97845a4f61ffe741e123, type: 3}
+  anim: {fileID: 0}
+  rb: {fileID: 0}
   sceneToLoad: SampleScene
 --- !u!195 &-4760138863645594199
 NavMeshAgent:
@@ -192,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c65f8617a880244bd52189315fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   health: 5
   enemyName: Zobster
   baseAttack: 0
@@ -200,5 +204,31 @@ MonoBehaviour:
   chaseRadius: 0
   attackRadius: 0
   homePos: {x: 0, y: 0}
+  anim: {fileID: 0}
+  rb: {fileID: 0}
+  target: {fileID: 0}
+  chaseRadius: 0
+  attackRadius: 0
+  homePos: {x: 0, y: 0}
   enemyAttack: {fileID: 0}
   sceneToLoad: 
+--- !u!95 &-865313446840539892
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651372379871967717}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4879e40e7438d4e43ae29fab05017daa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

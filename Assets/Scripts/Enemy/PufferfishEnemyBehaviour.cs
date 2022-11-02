@@ -3,42 +3,112 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PufferfishEnemyBehaviour : MonoBehaviour
+public class PufferfishEnemyBehaviour : Enemy
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private float moveSpeed = 3;
     [SerializeField] private GameObject explosion;
+    
     // Start is called before the first frame update
     void Start()
     {
-       player = GameObject.FindGameObjectWithTag("Player").transform;
+       target = GameObject.FindGameObjectWithTag("Player").transform;
+       rb = GetComponent<Rigidbody2D>();
+       anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    void Update(){
+        if(Vector3.Distance(transform.position, target.position) <= attackRadius && currentState != EnemyState.attack){
+            StartCoroutine(ExplodeFish());
+        }
+    }
     void FixedUpdate()
     {
-        FollowPlayer();
+        CheckDistance();
     }
 
+    void CheckDistance(){
+        Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        ChangeAnim(temp - transform.position);
+        if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
+            if(currentState == EnemyState.idle || currentState == EnemyState.walk ){
+                rb.MovePosition(temp);
+                Debug.Log("enemy move");
+                ChangeState(EnemyState.walk);
+                anim.SetBool("wakeUp", true);
+            }
+        }else{
+            anim.SetBool("wakeUp", false);
+
+        }
+    }
+    private void SetAnimFloat(Vector2 setVector){
+        anim.SetFloat("moveX", setVector.x);
+        anim.SetFloat("moveY", setVector.y);
+    }
+    private void ChangeAnim(Vector2 direction){
+        if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y)){
+            if(direction.x > 0){
+                SetAnimFloat(Vector2.right);
+            }else if(direction.x < 0){
+                SetAnimFloat(Vector2.left);
+            }
+
+        }else if(Mathf.Abs(direction.x) < Mathf.Abs(direction.y)){
+            if(direction.y > 0){
+                SetAnimFloat(Vector2.up);
+            }else if(direction.y < 0){
+                SetAnimFloat(Vector2.down);
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-            Instantiate(explosion, player.position, Quaternion.identity);
-            Destroy(gameObject);
-
-        }
         if (collision.gameObject.CompareTag("attack"))
         {
-            Destroy(gameObject);
+            StartCoroutine(TakeDamage());
         }
     }
 
-    void FollowPlayer()
+    public IEnumerator TakeDamage()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        Color ogColor = GetComponent<SpriteRenderer>().color;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        bool done = false;
+        health--;
+        currentState = EnemyState.stagger;
+        while(!done)
+        {
+            sr.color = Color.red;
+            yield return new WaitForSeconds(.5f);
+            done = true;
+            sr.color = ogColor;
+            currentState = EnemyState.idle;
+        }
+
+        if(health < 1)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    private void ChangeState(EnemyState newState){
+        if(currentState != newState){
+            currentState = newState;
+        }
     }
 
 
+    IEnumerator ExplodeFish(){
+        ChangeState(EnemyState.attack);
+        Vector2 direction = target.position - transform.position;
+        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        yield return new WaitForSeconds(1f);
+        //rb.constraints = RigidbodyConstraints2D.None;
+        rb.AddForce(direction * 2, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(.1f);
+        anim.SetBool("attack", true);
+        Debug.Log("pufferfish dive");
+        yield return new WaitForSeconds(.2f);
+        Destroy(gameObject);
+
+    }
 }

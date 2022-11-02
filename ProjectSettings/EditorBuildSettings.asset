@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FirstScene.unity
     guid: c0c1f99304f276c4188e906dfe4b32a1
   - enabled: 1
@@ -20,13 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Port3.unity
     guid: e63712bffaf3718408278dd1ac4da158
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Port4.unity
     guid: f48d161fadde54b42b2fdbdf40ce833c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Port5.unity
     guid: 24cbe17bc025af0409533b3bd4b13683
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
