@@ -12,7 +12,6 @@ public class PufferfishEnemyBehaviour : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Pufferfish Start");
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
