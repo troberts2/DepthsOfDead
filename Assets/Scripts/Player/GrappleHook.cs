@@ -24,6 +24,7 @@ public class GrappleHook : MonoBehaviour
     private bool isPulling;
     private Vector2 mousePos;
     private Rigidbody2D rb;
+    private BoxCollider2D playerCollider;
     private Camera cam;
 
     void Start()
@@ -32,6 +33,8 @@ public class GrappleHook : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         player = GameObject.FindWithTag("Player").transform;
+        playerCollider = GetComponent<BoxCollider2D>();
+
         //StartCoroutine(meleeAttack());
     }
     void Update()
@@ -55,10 +58,12 @@ public class GrappleHook : MonoBehaviour
             {
                 grapplePos = Vector2.Lerp(targetObj.transform.position, transform.position, grappleSpeed * Time.deltaTime);
                 targetObj.transform.position = grapplePos;
+                playerCollider.enabled = false;
             }else
             {
                 grapplePos = Vector2.Lerp(transform.position, targetObj.transform.position, grappleSpeed * Time.deltaTime);
                 player.position = grapplePos;
+                playerCollider.enabled = false;
             }
 
             line.SetPosition(0, transform.position);
@@ -71,6 +76,7 @@ public class GrappleHook : MonoBehaviour
                 retracting = false;
                 isGrappling = false;
                 line.enabled = false;
+                StartCoroutine(colliderEnable());
             }
         }
         if(Input.GetKeyDown(KeyCode.R))
@@ -150,5 +156,9 @@ public class GrappleHook : MonoBehaviour
             yield return null;
         }
         retracting = true;
+    }
+    IEnumerator colliderEnable(){
+        yield return new WaitForSeconds(1f);
+        playerCollider.enabled =true;
     }
 }

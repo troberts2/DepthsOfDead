@@ -1,24 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
-public class ProjectileEnemy : Enemy
+public class PufferfishEnemyBehaviour : Enemy
 {
-    [SerializeField]private GameObject fishProjectile;
-    private bool canShoot = true;
+    private NavMeshAgent agent;
+    [SerializeField] private GameObject explosion;
+    
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();   
     }
 
-    void Update()
-    {
-        if(Vector3.Distance(target.position, transform.position) <= attackRadius && canShoot){
-            GameObject fish = Instantiate(fishProjectile, transform.position, Quaternion.identity);
-            StartCoroutine(FireRate());
+    void Update(){
+        if(Vector3.Distance(transform.position, target.position) <= attackRadius && currentState != EnemyState.attack){
+            StartCoroutine(ExplodeFish());
         }
     }
     void FixedUpdate()
@@ -30,9 +34,9 @@ public class ProjectileEnemy : Enemy
         Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
-            if(currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger){
-                temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-                rb.MovePosition(temp);
+            if(currentState == EnemyState.idle || currentState == EnemyState.walk ){
+                agent.SetDestination(target.position);
+                Debug.Log("enemy move");
                 ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);
             }
@@ -61,20 +65,15 @@ public class ProjectileEnemy : Enemy
             }
         }
     }
-
-
-    private void OnTriggerEnter2D (Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
-        {
-
-        }
-        if(collision.CompareTag("attack"))
+        if (collision.gameObject.CompareTag("attack"))
         {
             StartCoroutine(TakeDamage());
         }
     }
-    IEnumerator TakeDamage()
+
+    public IEnumerator TakeDamage()
     {
         Color ogColor = GetComponent<SpriteRenderer>().color;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -95,14 +94,26 @@ public class ProjectileEnemy : Enemy
             Destroy(gameObject);
         }
     }
+    
     private void ChangeState(EnemyState newState){
         if(currentState != newState){
             currentState = newState;
         }
     }
-    IEnumerator FireRate(){
-        canShoot = false;
-        yield return new WaitForSeconds(2f);
-        canShoot = true;
+
+
+    IEnumerator ExplodeFish(){
+        ChangeState(EnemyState.attack);
+        Vector2 direction = target.position - transform.position;
+        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        yield return new WaitForSeconds(1f);
+        //rb.constraints = RigidbodyConstraints2D.None;
+        rb.AddForce(direction * 2, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(.1f);
+        anim.SetBool("attack", true);
+        Debug.Log("pufferfish dive");
+        yield return new WaitForSeconds(.2f);
+        Destroy(gameObject);
+
     }
 }

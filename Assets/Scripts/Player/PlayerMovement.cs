@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 mousePos;
     GrappleHook gh;
     private GameObject attacki;
+    private BoxCollider2D playerCollider;
     [SerializeField]private GameObject attackPrefab;
+    public int roomNum;
      
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         cam = Camera.main;
         gh = GetComponent<GrappleHook>();
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         Serializer.Load();
         StartCoroutine(Movement());
@@ -116,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.CompareTag("EnemyAttack") && !iframes)
+        if(collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy") && iframes == false)
         {
             StartCoroutine(TakeDamage(1));
         }
@@ -132,8 +135,8 @@ public class PlayerMovement : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
-        yield return new WaitForSeconds(.5f);
-        sr.color = ogColor;
+        yield return new WaitForSeconds(1f);
+        sr.color = Color.white;
         iframes = false;
     }
     private IEnumerator AttackCo(){
@@ -149,9 +152,10 @@ public class PlayerMovement : MonoBehaviour
             currentState = newState;
         }
     }
-    public void UpdateValues(int phealth, int pdamage, float pspeed){
+    public void UpdateValues(int phealth, int pdamage, float pspeed, int room){
         playerHealth = phealth;
         baseDamage = pdamage;
         playerSpeed = pspeed;
+        roomNum = room;
     }
 }

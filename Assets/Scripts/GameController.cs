@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
         GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
         foreach(GameObject upgrade in upgrades)
         GameObject.Destroy(upgrade);
+        pm.roomNum++;
         Serializer.Save();
         InstantiateDoor();
     }

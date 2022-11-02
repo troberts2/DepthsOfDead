@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 public class TitleScreen : MonoBehaviour
 {
     [SerializeField] GameObject toggleTutorial;
+    [SerializeField]private JsonSerializer Serializer;
+    [SerializeField] private PlayerMovement pm;
+
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        Serializer = GetComponent<JsonSerializer>();
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame 
@@ -21,12 +25,14 @@ public class TitleScreen : MonoBehaviour
 
     public void StartGame()
     {
+        pm.UpdateValues(5, 1, 5, 0);
+        Serializer.Save();
         if (toggleTutorial.activeInHierarchy == false)
         {
-            int index = Random.Range(0, 3);
+            int index = Random.Range(1, 6);
             while (index == SceneManager.GetActiveScene().buildIndex)
             {
-                index = Random.Range(0, 3);
+                index = Random.Range(1, 6);
             }
             SceneManager.LoadScene(index);
 

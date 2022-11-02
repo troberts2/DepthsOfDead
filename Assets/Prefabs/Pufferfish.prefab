@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5579394569884218190}
   - component: {fileID: 132682461254251777}
   - component: {fileID: 7831372887563274304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pufferfish
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6123779377903919557}
   - component: {fileID: 7958693225813464832}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: collider
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}

@@ -26,8 +26,10 @@ public class knockback : MonoBehaviour
     private IEnumerator KnockCo(Rigidbody2D enemy)
     {
         yield return new WaitForSeconds(knockTime);
-        enemy.velocity = Vector2.zero;
-        enemy.isKinematic = true;  
+        if(enemy != null){
+            enemy.velocity = Vector2.zero;
+            enemy.isKinematic = true;  
+        }
 
     }
 }

@@ -26,7 +26,7 @@ public class JsonSerializer : MonoBehaviour
             var json = File.ReadAllText(Application.dataPath + "/SaveData/Data.json");
             GSD = JsonConvert.DeserializeObject<GameSaveData>(json);
         }
-        pm.UpdateValues(GSD.playerHealth, GSD.playerDamage, GSD.playerSpeed);
+        pm.UpdateValues(GSD.playerHealth, GSD.playerDamage, GSD.playerSpeed, GSD.roomNumber);
     }
 }
 [System.Serializable]
@@ -34,4 +34,5 @@ public class GameSaveData {
     public int playerHealth;
     public int playerDamage;
     public float playerSpeed;
+    public int roomNumber;
 }
