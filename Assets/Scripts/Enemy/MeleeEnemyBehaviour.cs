@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class MeleeEnemyBehaviour : Enemy
 {
+    private NavMeshAgent agent;
 
     public string sceneToLoad;
     private bool canShoot = true;
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -44,8 +49,7 @@ public class MeleeEnemyBehaviour : Enemy
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
             if(currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger && currentState != EnemyState.attack){
-                temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-                rb.MovePosition(temp);
+                agent.SetDestination(target.position);
                 ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);
             }
