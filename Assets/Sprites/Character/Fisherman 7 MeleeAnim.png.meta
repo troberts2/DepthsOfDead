@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -102,7 +102,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Fisherman 7 MeleeAnim_0
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 159
+        width: 183
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2df8caf54051f846bf635a663de2029
+      internalID: -1146116321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fisherman 7 MeleeAnim_1
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 140
+        width: 182
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e8f50f0b278e6547a88fcc98809f302
+      internalID: 404060419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fisherman 7 MeleeAnim_3
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 169
+        width: 237
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc6121a13bd5cdf4589b5236335fe5cf
+      internalID: 222714178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fisherman 7 MeleeAnim_5
+      rect:
+        serializedVersion: 2
+        x: 2133
+        y: 169
+        width: 239
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14b82e52dc9ce2e4e934ee27e364c3fe
+      internalID: -1636748232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fisherman 7 MeleeAnim_7
+      rect:
+        serializedVersion: 2
+        x: 2778
+        y: 169
+        width: 233
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a79a28b880bcbb445bc268d7b2354687
+      internalID: -190207184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -113,7 +218,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fisherman 7 MeleeAnim_7: -190207184
+      Fisherman 7 MeleeAnim_5: -1636748232
+      Fisherman 7 MeleeAnim_9: -1035515939
+      Fisherman 7 MeleeAnim_0: -1146116321
+      Fisherman 7 MeleeAnim_2: -674080492
+      Fisherman 7 MeleeAnim_3: 222714178
+      Fisherman 7 MeleeAnim_4: 150370757
+      Fisherman 7 MeleeAnim_10: 796401316
+      Fisherman 7 MeleeAnim_6: 1234939595
+      Fisherman 7 MeleeAnim_8: -833786108
+      Fisherman 7 MeleeAnim_1: 404060419
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
