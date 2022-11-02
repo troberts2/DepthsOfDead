@@ -62,6 +62,7 @@ public class WhaleBoss : MonoBehaviour
         }
     }
     IEnumerator basicSprayAttack(){
+        yield return new WaitForSeconds(4f);
         float startAngle = 180f;
         float endAngle = 0f;
         int bulletsAmount = 10;
@@ -83,7 +84,6 @@ public class WhaleBoss : MonoBehaviour
             }
             yield return new WaitForSeconds(.5f);
         }
-        yield return new WaitForSeconds(4f);
         StartCoroutine(basicSprayAttack());
     }
 }

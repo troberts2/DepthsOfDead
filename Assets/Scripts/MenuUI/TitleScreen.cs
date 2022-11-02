@@ -25,18 +25,27 @@ public class TitleScreen : MonoBehaviour
 
     public void StartGame()
     {
-        pm.UpdateValues(5, 1, 5, 0);
+        pm.UpdateValues(10, 1, 5, 0);
         Serializer.Save();
+        int index = Random.Range(1, 6);
+        while (index == SceneManager.GetActiveScene().buildIndex)
+        {
+            index = Random.Range(1, 6);
+        }
+        SceneManager.LoadScene(index);
+
+        Debug.Log("this will start the game");
         if (toggleTutorial.activeInHierarchy == false)
         {
-            int index = Random.Range(1, 6);
+            SceneManager.LoadScene(1);
+            /*int index = Random.Range(1, 6);
             while (index == SceneManager.GetActiveScene().buildIndex)
             {
                 index = Random.Range(1, 6);
             }
             SceneManager.LoadScene(index);
 
-            Debug.Log("this will start the game");
+            Debug.Log("this will start the game");*/
         }
         else if (toggleTutorial.activeInHierarchy == true)
         {

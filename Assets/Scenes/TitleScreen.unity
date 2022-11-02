@@ -1078,7 +1078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: -163}
+  m_AnchoredPosition: {x: 0, y: -293}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1451842180
@@ -1191,6 +1191,7 @@ MonoBehaviour:
     playerHealth: 0
     playerDamage: 0
     playerSpeed: 0
+    roomNumber: 0
   pm: {fileID: 0}
 --- !u!1 &1575376968
 GameObject:
@@ -1301,6 +1302,7 @@ MonoBehaviour:
     playerHealth: 0
     playerDamage: 0
     playerSpeed: 0
+    roomNumber: 0
   pm: {fileID: 0}
 --- !u!1 &1690097323
 GameObject:

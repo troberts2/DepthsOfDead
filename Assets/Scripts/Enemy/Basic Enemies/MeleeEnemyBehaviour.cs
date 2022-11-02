@@ -22,10 +22,8 @@ public class MeleeEnemyBehaviour : Enemy
     }
 
     void Update(){
-        if(Vector3.Distance(transform.position, target.position) <= attackRadius && canShoot){
-            anim.SetBool("attack", true);
-
-            StartCoroutine(FireRate());
+        if(Vector3.Distance(transform.position, target.position) <= attackRadius && currentState != EnemyState.attack){
+            StartCoroutine(AttackCo());
         }
     }
     void FixedUpdate()
@@ -111,12 +109,15 @@ public class MeleeEnemyBehaviour : Enemy
             currentState = newState;
         }
     }
-    IEnumerator FireRate(){
-        canShoot = false;
+
+
+    private IEnumerator AttackCo(){
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("attack", true);
+        ChangeState(EnemyState.attack);
+        yield return null;
         anim.SetBool("attack", false);
-        yield return new WaitForSeconds(2f);
-        canShoot = true;
-        
-        ChangeState(EnemyState.idle);
+        yield return new WaitForSeconds(1f);
+        ChangeState(EnemyState.walk);
     }
 }

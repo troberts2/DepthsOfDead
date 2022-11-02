@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         ///// NEEED TO FIX THE CARDS
-        Debugger();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         if(GameObject.FindGameObjectWithTag("Enemy") == null && !cardsDropped){
             cardsDropped = true;
@@ -41,12 +40,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    void Debugger(){
-        if(Input.GetKey(KeyCode.R)) 
-        { 
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        } 
-    }
     public void clearUpgrades(){
         GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
         foreach(GameObject upgrade in upgrades)

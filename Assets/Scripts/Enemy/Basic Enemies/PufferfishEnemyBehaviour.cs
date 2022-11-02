@@ -35,7 +35,7 @@ public class PufferfishEnemyBehaviour : Enemy
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
             if(currentState == EnemyState.idle || currentState == EnemyState.walk ){
-                agent.SetDestination(target.position);
+                //agent.SetDestination(target.position);
                 Debug.Log("enemy move");
                 ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);

@@ -17,6 +17,7 @@ public class JsonSerializer : MonoBehaviour
         GSD.playerHealth = pm.playerHealth;
         GSD.playerDamage = pm.baseDamage;
         GSD.playerSpeed = pm.playerSpeed;
+        GSD.roomNumber = pm.roomNum;
         var convertedJson = JsonConvert.SerializeObject(GSD);
         File.WriteAllText(Application.dataPath + "/SaveData/Data.json", convertedJson);
     }

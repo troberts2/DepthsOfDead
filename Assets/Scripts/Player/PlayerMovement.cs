@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy") && iframes == false)
+        if(collider.CompareTag("EnemyAttack") && iframes == false)
         {
             StartCoroutine(TakeDamage(1));
         }

@@ -7,8 +7,10 @@ public class RoomSpawner : MonoBehaviour
 {
     public int currentScene;
     private PlayerMovement pm;
-    private int bossSceneNum;
+    private int bossSceneNum = 7;
+    private JsonSerializer Serializer;
     void Start(){
+        Serializer = GetComponent<JsonSerializer>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
     }
@@ -25,6 +27,7 @@ public class RoomSpawner : MonoBehaviour
     }
     public void ScenePickRandom()
     {
+        Serializer.Save();
         if(pm.roomNum > 5){
             SceneManager.LoadScene(bossSceneNum);
         }else{
