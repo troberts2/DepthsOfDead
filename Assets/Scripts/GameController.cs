@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private Vector2 doorPos;
     private GameObject[] enemies;
+    public JsonSerializer Serializer;
     [SerializeField] GameObject[] upgrades;
     public GameObject canvas;
     [SerializeField] Transform player;
@@ -15,6 +16,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Serializer = GetComponent<JsonSerializer>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
@@ -49,6 +51,7 @@ public class GameController : MonoBehaviour
         GameObject[] upgrades = GameObject.FindGameObjectsWithTag("upgrade");
         foreach(GameObject upgrade in upgrades)
         GameObject.Destroy(upgrade);
+        Serializer.Save();
         InstantiateDoor();
     }
 

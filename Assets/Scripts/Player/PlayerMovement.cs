@@ -14,8 +14,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private playerState currentState;
     [SerializeField] public float playerSpeed;
-    [SerializeField] public int playerHealth = 6;
+    [SerializeField] public int playerHealth = 5;
     public int baseDamage = 1;
+    public JsonSerializer Serializer;
     private bool iframes = false;
     private float mx, my;
 
@@ -32,17 +33,18 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 mousePos;
     GrappleHook gh;
-    private bool canHit = true;
     private GameObject attacki;
     [SerializeField]private GameObject attackPrefab;
      
     // Start is called before the first frame update
     void Start()
     {
+        Serializer = GetComponent<JsonSerializer>();
         cam = Camera.main;
         gh = GetComponent<GrappleHook>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Serializer.Load();
         StartCoroutine(Movement());
     }
 
@@ -146,5 +148,10 @@ public class PlayerMovement : MonoBehaviour
         if(currentState != newState){
             currentState = newState;
         }
+    }
+    public void UpdateValues(int phealth, int pdamage, float pspeed){
+        playerHealth = phealth;
+        baseDamage = pdamage;
+        playerSpeed = pspeed;
     }
 }

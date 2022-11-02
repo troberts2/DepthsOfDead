@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5013096498435939509}
   - component: {fileID: 5013096498435939508}
+  - component: {fileID: 3101592541216065259}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorPos: {x: 0, y: 0}
+  Serializer: {fileID: 0}
   upgrades:
   - {fileID: 3017813754768570934, guid: 6bbe7a6f01a581e4caec0a4093db956d, type: 3}
   - {fileID: 8892532117308386439, guid: 30a53d94ff23eb44c81f162b3f216a41, type: 3}
@@ -52,4 +54,21 @@ MonoBehaviour:
   canvas: {fileID: 0}
   player: {fileID: 0}
   door: {fileID: 6382765277084982805, guid: 551241560f47d2e4c97129f49637f923, type: 3}
+  pm: {fileID: 0}
+--- !u!114 &3101592541216065259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013096498435939511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761042079d12d17449054941a86a6dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GSD:
+    playerHealth: 0
+    playerDamage: 0
+    playerSpeed: 0
   pm: {fileID: 0}
