@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     {
         Serializer = GetComponent<JsonSerializer>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        Serializer.Load();
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
     {
         ///// NEEED TO FIX THE CARDS
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        
         if(GameObject.FindGameObjectWithTag("Enemy") == null && !cardsDropped){
             cardsDropped = true;
             Debug.Log("spawn cards");

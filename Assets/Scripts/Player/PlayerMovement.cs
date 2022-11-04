@@ -47,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        Serializer.Load();
         StartCoroutine(Movement());
     }
 
@@ -152,10 +151,10 @@ public class PlayerMovement : MonoBehaviour
             currentState = newState;
         }
     }
-    public void UpdateValues(int phealth, int pdamage, float pspeed, int room){
-        playerHealth = phealth;
-        baseDamage = pdamage;
-        playerSpeed = pspeed;
-        roomNum = room;
+    public void SetInit(){
+        playerHealth = 500;
+        baseDamage = 1;
+        playerSpeed = 5;
+        roomNum = 0;
     }
 }

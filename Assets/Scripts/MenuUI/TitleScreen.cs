@@ -25,7 +25,7 @@ public class TitleScreen : MonoBehaviour
 
     public void StartGame()
     {
-        pm.UpdateValues(10, 1, 5, 0);
+        pm.SetInit();
         Serializer.Save();
         if (toggleTutorial.activeInHierarchy == false)
         {

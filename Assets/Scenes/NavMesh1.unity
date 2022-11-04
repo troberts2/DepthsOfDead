@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonControl
       objectReference: {fileID: 0}
+    - target: {fileID: 6973771569282478155, guid: ccd49e3fd746cfd42af6f764527d04ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd49e3fd746cfd42af6f764527d04ee, type: 3}
 --- !u!4 &366996241 stripped
@@ -1431,6 +1435,10 @@ PrefabInstance:
     - target: {fileID: 4699048890990551171, guid: a13803db8c6ff7b4790366143ba991b0, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699048890990551171, guid: a13803db8c6ff7b4790366143ba991b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4699048890990551183, guid: a13803db8c6ff7b4790366143ba991b0, type: 3}
       propertyPath: m_Pivot.x
