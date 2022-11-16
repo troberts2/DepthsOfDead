@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NavMesh7.unity
     guid: 1441c1862afd3974a9cd7dce4a231a0d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NavMesh8.unity
     guid: e9b24e5f77affda47aa4d4550a5e1cf9
   - enabled: 0
