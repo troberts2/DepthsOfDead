@@ -29,10 +29,10 @@ public class TitleScreen : MonoBehaviour
         Serializer.Save();
         if (toggleTutorial.activeInHierarchy == false)
         {
-            int index = Random.Range(1, 6);
+            int index = Random.Range(1, 12);
             while (index == SceneManager.GetActiveScene().buildIndex)
             {
-                index = Random.Range(1, 6);
+                index = Random.Range(1, 12);
             }
             SceneManager.LoadScene(index);
 

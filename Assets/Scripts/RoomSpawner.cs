@@ -7,7 +7,7 @@ public class RoomSpawner : MonoBehaviour
 {
     public int currentScene;
     private PlayerMovement pm;
-    private int bossSceneNum = 7;
+    private int bossSceneNum = 9;
     private JsonSerializer Serializer;
     void Start(){
         Serializer = GetComponent<JsonSerializer>();

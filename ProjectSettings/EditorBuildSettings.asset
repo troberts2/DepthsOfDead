@@ -26,15 +26,33 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NavMesh6.unity
     guid: 704d5f57d4c9b154ba3b22b318a7d5f5
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/AiTesting.unity
+    guid: fae369abdbf030a419da9d09d54cc073
+  - enabled: 1
+    path: Assets/Scenes/NavMesh7.unity
+    guid: 1441c1862afd3974a9cd7dce4a231a0d
+  - enabled: 1
+    path: Assets/Scenes/NavMesh8.unity
+    guid: e9b24e5f77affda47aa4d4550a5e1cf9
+  - enabled: 0
+    path: Assets/Scenes/Platformer1.unity
+    guid: a3f6018c16dc321479fb6d8a779d0e10
+  - enabled: 0
+    path: Assets/Scenes/Platformer2.unity
+    guid: e172e32699372cd4fbb6e1ee3dc32406
+  - enabled: 0
+    path: Assets/Scenes/Platformer3.unity
+    guid: 7f26395979fda2b4492c827e2625ff6c
+  - enabled: 0
+    path: Assets/Scenes/Platformer4.unity
+    guid: b39985cc57db3b0429274d8b7f5951df
   - enabled: 1
     path: Assets/Scenes/Boss Scene.unity
     guid: 4a9e519ba83a21445b570c081de84af4
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/AiTesting.unity
-    guid: fae369abdbf030a419da9d09d54cc073
   - enabled: 1
     path: Assets/Scenes/Tut1.unity
     guid: 9ccf59579f55bff49b7294fa839789f0

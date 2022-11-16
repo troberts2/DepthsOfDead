@@ -9643,6 +9643,14 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[399].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 7305195513218782067, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305195513218782067, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
     - target: {fileID: 7305195513218782071, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
       propertyPath: m_Size.x
       value: 28

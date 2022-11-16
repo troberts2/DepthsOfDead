@@ -35,7 +35,8 @@ public class PufferfishEnemyBehaviour : Enemy
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
             if(currentState == EnemyState.idle || currentState == EnemyState.walk ){
-                agent.SetDestination(target.position);
+                temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+                rb.MovePosition(temp);
                 Debug.Log("enemy move");
                 ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);
@@ -106,7 +107,7 @@ public class PufferfishEnemyBehaviour : Enemy
         ChangeState(EnemyState.attack);
         Vector2 direction = target.position - transform.position;
         //rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         //rb.constraints = RigidbodyConstraints2D.None;
         rb.AddForce(direction * 2, ForceMode2D.Impulse);
         yield return new WaitForSeconds(.1f);

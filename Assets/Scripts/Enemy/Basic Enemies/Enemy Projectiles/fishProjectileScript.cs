@@ -20,4 +20,10 @@ public class fishProjectileScript : MonoBehaviour
     {
         rb.velocity = direction * 1.5f;
     }
+    void OnTriggerEnter2D(Collider2D collider){
+        if(collider.CompareTag("wall")){
+            Destroy(gameObject);
+        }
+
+    }
 }

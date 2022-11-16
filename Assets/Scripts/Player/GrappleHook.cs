@@ -97,13 +97,17 @@ public class GrappleHook : MonoBehaviour
         //if raycast hit enemy layer shoot a line to it
         if(hit.collider != null)
         {
-            isGrappling = true;
-            target = hit.point;
-            targetObj = hit.collider.gameObject;
-            line.enabled = true;
-            line.positionCount = 2;
-            //will shoot the ray cast at target
-            StartCoroutine(Grapple());
+            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("wall")){
+
+            }else{
+                isGrappling = true;
+                target = hit.point;
+                targetObj = hit.collider.gameObject;
+                line.enabled = true;
+                line.positionCount = 2;
+                //will shoot the ray cast at target
+                StartCoroutine(Grapple());
+            }
         }
     }
 

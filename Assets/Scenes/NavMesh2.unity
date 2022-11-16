@@ -135,6 +135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7305195512201224596, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
+      propertyPath: m_TagString
+      value: pit
+      objectReference: {fileID: 0}
     - target: {fileID: 7305195512201224599, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
       propertyPath: player
       value: 
@@ -10350,6 +10354,14 @@ PrefabInstance:
     - target: {fileID: 7305195513185496754, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
       propertyPath: m_Tiles.Array.data[422].second.m_TileObjectToInstantiateIndex
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305195513218782067, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305195513218782067, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
+      propertyPath: m_TagString
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 7305195513218782071, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
       propertyPath: m_Size.x
