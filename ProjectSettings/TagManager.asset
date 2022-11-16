@@ -9,6 +9,7 @@ TagManager:
   - EnemyAttack
   - upgrade
   - door
+  - walls
   layers:
   - Default
   - TransparentFX

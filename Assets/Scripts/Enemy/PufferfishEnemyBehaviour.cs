@@ -10,9 +10,18 @@ public class PufferfishEnemyBehaviour : Enemy
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< Updated upstream:Assets/Scripts/Enemy/PufferfishEnemyBehaviour.cs
        target = GameObject.FindGameObjectWithTag("Player").transform;
        rb = GetComponent<Rigidbody2D>();
        anim = GetComponent<Animator>();
+=======
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+>>>>>>> Stashed changes:Assets/Scripts/Enemy/Basic Enemies/PufferfishEnemyBehaviour.cs
     }
 
     void Update(){
@@ -25,13 +34,31 @@ public class PufferfishEnemyBehaviour : Enemy
         CheckDistance();
     }
 
+    private void OnTriggerEnter2D (Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+
+        }
+        if(collision.CompareTag("attack"))
+        {
+            StartCoroutine(TakeDamage());
+        }
+    }
     void CheckDistance(){
         Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
+<<<<<<< Updated upstream:Assets/Scripts/Enemy/PufferfishEnemyBehaviour.cs
             if(currentState == EnemyState.idle || currentState == EnemyState.walk ){
                 rb.MovePosition(temp);
                 Debug.Log("enemy move");
+=======
+            if(currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger && currentState != EnemyState.attack){
+                temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+                transform.position = temp;
+                Debug.Log("pufferfish move");
+>>>>>>> Stashed changes:Assets/Scripts/Enemy/Basic Enemies/PufferfishEnemyBehaviour.cs
                 ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);
             }
@@ -58,13 +85,6 @@ public class PufferfishEnemyBehaviour : Enemy
             }else if(direction.y < 0){
                 SetAnimFloat(Vector2.down);
             }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("attack"))
-        {
-            StartCoroutine(TakeDamage());
         }
     }
 

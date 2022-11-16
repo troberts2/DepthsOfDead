@@ -12,12 +12,18 @@ public class GameController : MonoBehaviour
     [SerializeField] Transform player;
     private bool cardsDropped = false;
     [SerializeField]private GameObject door;
+    [SerializeField] private Camera cam;
     [SerializeField] private PlayerMovement pm;
     // Start is called before the first frame update
     void Start()
     {
         Serializer = GetComponent<JsonSerializer>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+<<<<<<< Updated upstream
+=======
+        Serializer.Load();
+        cam = Camera.main;
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -36,6 +42,8 @@ public class GameController : MonoBehaviour
                 upgrade2 = Instantiate(upgrades[Random.Range(0, upgrades.Length)], new Vector2(925, 75), Quaternion.identity);
                 Debug.Log("card switched");
             }
+            
+            
             upgrade2.transform.SetParent(canvas.transform, false);
         }
 
@@ -53,10 +61,20 @@ public class GameController : MonoBehaviour
         GameObject.Destroy(upgrade);
         Serializer.Save();
         InstantiateDoor();
+
     }
 
     void InstantiateDoor(){
         door.SetActive(true);
         Debug.Log("door should appear");
+        StartCoroutine(DoorPan());
+    }
+
+    IEnumerator DoorPan(){
+        cam.transform.position = new Vector3(door.transform.position.x, door.transform.position.y, -28f);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        yield return new WaitForSeconds(1f);
+        cam.transform.position = new Vector3(player.position.x, player.position.y, -28f);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 }
