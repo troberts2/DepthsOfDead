@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public enum playerState{
     idle,
     walk,
@@ -16,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private playerState currentState;
     [SerializeField] public float playerSpeed;
     [SerializeField] public int playerHealth = 5;
+    
+    [SerializeField] private AudioSource GettingHit;
+    [SerializeField] private AudioSource Dashing;
+
     public int baseDamage = 1;
     public JsonSerializer Serializer;
     private bool iframes = false;
@@ -67,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown (KeyCode.Space))
             {
+                Dashing.Play();
                 var mousePos = cam.ScreenToWorldPoint (Input.mousePosition);
                 var direction = (mousePos - this.transform.position);
  
@@ -160,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
         iframes = true;
         Color ogColor = GetComponent<SpriteRenderer>().color;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        GettingHit.Play();
         sr.color = Color.red;
         if(playerHealth < 0)
         {
