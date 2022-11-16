@@ -13,10 +13,6 @@ public class GameController : MonoBehaviour
     private bool cardsDropped = false;
     [SerializeField]private GameObject door;
     [SerializeField] private PlayerMovement pm;
-    
-
-    [SerializeField] private AudioSource doorAppear;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -56,8 +52,6 @@ public class GameController : MonoBehaviour
     }
 
     void InstantiateDoor(){
-
-       // doorAppear.Play();
         door.SetActive(true);
         Debug.Log("door should appear");
     }
