@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canDash = true;
     private bool isDashing = false;
-    public float dashDistance = 1f;
+    public float dashDistance = 1.5f;
     public float dashDuration = 0.15f;
 
     public TextMeshProUGUI livesText;
