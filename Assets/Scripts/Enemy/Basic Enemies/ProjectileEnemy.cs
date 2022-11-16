@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class ProjectileEnemy : Enemy
 {
+    [SerializeField] private AudioSource GotHits;
     [SerializeField]private GameObject fishProjectile;
     private bool canShoot = true;
     private NavMeshAgent agent;
+
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -87,10 +91,15 @@ public class ProjectileEnemy : Enemy
         currentState = EnemyState.stagger;
         while(!done)
         {
+           
+
             sr.color = Color.red;
+          
             yield return new WaitForSeconds(.5f);
             done = true;
             sr.color = ogColor;
+            
+
             currentState = EnemyState.idle;
         }
 

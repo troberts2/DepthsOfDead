@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private playerState currentState;
     [SerializeField] public float playerSpeed;
     [SerializeField] public int playerHealth = 5;
+    
+    
+    [SerializeField] private AudioSource SwingEffect;
+    [SerializeField] private AudioSource HitEffect;
+    [SerializeField] private AudioSource Death;
     public int baseDamage = 1;
     public JsonSerializer Serializer;
     private bool iframes = false;
@@ -70,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             if(Input.GetKeyDown(KeyCode.F) && currentState != playerState.attack){
                 StartCoroutine(AttackCo());
+                SwingEffect.Play();
+
             }
             else if(mx != 0 || my !=0)
             {
@@ -129,9 +136,12 @@ public class PlayerMovement : MonoBehaviour
         iframes = true;
         Color ogColor = GetComponent<SpriteRenderer>().color;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        HitEffect.Play();
         sr.color = Color.red;
         if(playerHealth < 0)
         {
+            Death.Play();
+            yield return new WaitForSeconds(1.2f);
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         yield return new WaitForSeconds(1f);
@@ -152,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public void SetInit(){
-        playerHealth = 500;
+        playerHealth = 69;
         baseDamage = 1;
         playerSpeed = 5;
         roomNum = 0;
