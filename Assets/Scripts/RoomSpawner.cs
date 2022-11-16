@@ -31,9 +31,9 @@ public class RoomSpawner : MonoBehaviour
         if(pm.roomNum > 5){
             SceneManager.LoadScene(bossSceneNum);
         }else{
-            int index = Random.Range(1, 12);
+            int index = Random.Range(1, 6);
             while(index == currentScene){
-                index = Random.Range(1, 12);
+                index = Random.Range(1, 6);
             }
             SceneManager.LoadScene(index);
         }  
