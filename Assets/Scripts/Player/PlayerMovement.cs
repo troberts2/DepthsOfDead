@@ -7,7 +7,8 @@ using TMPro;
 public enum playerState{
     idle,
     walk,
-    attack
+    attack,
+    dash
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -15,16 +16,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private playerState currentState;
     [SerializeField] public float playerSpeed;
     [SerializeField] public int playerHealth = 5;
+    
+    
+    [SerializeField] private AudioSource SwingEffect;
+    [SerializeField] private AudioSource HitEffect;
+    [SerializeField] private AudioSource Death;
     public int baseDamage = 1;
     public JsonSerializer Serializer;
     private bool iframes = false;
     private float mx, my;
 
-    [SerializeField] private float dashSpeed;
-    [SerializeField]private float dashLength;
-    [SerializeField]private float dashCooldown;
-    [SerializeField]private float dashCounter;
-    [SerializeField]private float dashCoolCounter;
+    private bool canDash = true;
+    private bool isDashing = false;
+    public float dashDistance = 1f;
+    public float dashDuration = 0.15f;
+
     public TextMeshProUGUI livesText;
 
     private Rigidbody2D rb;
@@ -59,6 +65,30 @@ public class PlayerMovement : MonoBehaviour
         livesText.text = "Lives: " + playerHealth;
 
     }
+
+    void Update ()
+    {
+        if (isDashing == false)
+        {
+            if (Input.GetKeyDown (KeyCode.Space))
+            {
+                var mousePos = cam.ScreenToWorldPoint (Input.mousePosition);
+                var direction = (mousePos - this.transform.position);
+ 
+                // Z-component won't matter in 2D.  If you want to only dash in
+                // the X-direction (HK without Dashmaster), then you'd also set
+                // your y-component to zero.
+                direction.z = 0;
+ 
+                // Making sure we have a reasonable vector here
+                if (direction.magnitude >= 0.1f)
+                {
+                    // Don't exceed the target, you might not want this
+                    this.StartCoroutine (this.DashRoutine (direction.normalized));
+                }
+            }
+         }
+     }
     IEnumerator Movement()
     {
         while(true)
@@ -70,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             if(Input.GetKeyDown(KeyCode.F) && currentState != playerState.attack){
                 StartCoroutine(AttackCo());
+                SwingEffect.Play();
+
             }
             else if(mx != 0 || my !=0)
             {
@@ -83,38 +115,44 @@ public class PlayerMovement : MonoBehaviour
                 ChangeState(playerState.idle);
             }
             
-            Dash();
+            
             yield return null;
         }
     }
-    void Dash()
+     IEnumerator DashRoutine (Vector3 direction)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Account for some edge cases   
+        if (dashDistance <= 0.001f)
+            yield break;
+ 
+        if (dashDuration <= 0.001f)
         {
-            if (dashCoolCounter <= 0 && dashCounter <= 0)
-            {
-                playerSpeed = dashSpeed;
-                dashCounter = dashLength;
-
-                    
-            }
+            transform.position += direction * dashDistance;
+            yield break;
         }
-
-        if (dashCounter > 0)
+ 
+        // Update our state
+        iframes =true;
+        isDashing = true;
+        var elapsed = 0f;
+        var start = transform.position;
+        var target = transform.position + dashDistance * direction;
+ 
+        // There are a few different ways to do this, but I've always preferred
+        // Lerp for things that have a fixed duration as the interpolant is clear
+        while (elapsed < dashDuration)
         {
-            dashCounter -= Time.deltaTime;
-
-            if (dashCounter <= 0)
-            {
-                playerSpeed = 5f;
-                dashCoolCounter = dashCooldown;
-
-            }
+            var iterTarget = Vector3.Lerp (start, target, elapsed / dashDuration);
+            transform.position = iterTarget;
+ 
+            yield return null;
+            elapsed += Time.deltaTime;
         }
-        if (dashCoolCounter > 0)
-        {
-            dashCoolCounter -= Time.deltaTime; 
-        }
+ 
+        // Snap there when we finish then update our state
+        transform.position = target;
+        isDashing = false;
+        iframes = false;
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -129,9 +167,12 @@ public class PlayerMovement : MonoBehaviour
         iframes = true;
         Color ogColor = GetComponent<SpriteRenderer>().color;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        HitEffect.Play();
         sr.color = Color.red;
         if(playerHealth < 0)
         {
+            Death.Play();
+            yield return new WaitForSeconds(1.2f);
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         yield return new WaitForSeconds(1f);
@@ -152,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public void SetInit(){
-        playerHealth = 500;
+        playerHealth = 69;
         baseDamage = 1;
         playerSpeed = 5;
         roomNum = 0;

@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AiTesting.unity
     guid: fae369abdbf030a419da9d09d54cc073
+  - enabled: 1
+    path: Assets/Scenes/BackupTut1.unity
+    guid: 28e695f976d35714cb2614a348354b87
+  - enabled: 1
+    path: Assets/Scenes/BackupTut2.unity
+    guid: d696606f10e4497408a21758d191bfd3
   m_configObjects: {}
