@@ -9,6 +9,8 @@ public class PufferfishEnemyBehaviour : Enemy
     private NavMeshAgent agent;
     [SerializeField] private GameObject explosion;
     
+    [SerializeField] private AudioSource Pop;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +93,7 @@ public class PufferfishEnemyBehaviour : Enemy
 
         if(health < 1)
         {
+            
             Destroy(gameObject);
         }
     }
