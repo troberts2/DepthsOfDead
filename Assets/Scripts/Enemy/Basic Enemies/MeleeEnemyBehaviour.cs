@@ -10,9 +10,6 @@ public class MeleeEnemyBehaviour : Enemy
 
     public string sceneToLoad;
     private bool canShoot = true;
-
-    //[SerializeField] private AudioSource GetHit;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -96,16 +93,13 @@ public class MeleeEnemyBehaviour : Enemy
         while(!done)
         {
             sr.color = Color.red;
-            
             yield return new WaitForSeconds(.5f);
             done = true;
             sr.color = ogColor;
             currentState = EnemyState.idle;
-            
-
         }
 
-        if (health < 1)
+        if(health < 1)
         {
             Destroy(gameObject);
         }

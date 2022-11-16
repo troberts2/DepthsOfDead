@@ -9,8 +9,6 @@ public class PufferfishEnemyBehaviour : Enemy
     private NavMeshAgent agent;
     [SerializeField] private GameObject explosion;
     
-    [SerializeField] private AudioSource Pop;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +16,8 @@ public class PufferfishEnemyBehaviour : Enemy
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update(){
@@ -32,25 +30,13 @@ public class PufferfishEnemyBehaviour : Enemy
         CheckDistance();
     }
 
-    private void OnTriggerEnter2D (Collider2D collision)
-    {
-        if(collision.CompareTag("Player"))
-        {
-
-        }
-        if(collision.CompareTag("attack"))
-        {
-            StartCoroutine(TakeDamage());
-        }
-    }
     void CheckDistance(){
         Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
-            if(currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger && currentState != EnemyState.attack){
-                temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-                transform.position = temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-                Debug.Log("pufferfish move");
+            if(currentState == EnemyState.idle || currentState == EnemyState.walk ){
+                agent.SetDestination(target.position);
+                Debug.Log("enemy move");
                 ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);
             }
@@ -79,6 +65,13 @@ public class PufferfishEnemyBehaviour : Enemy
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("attack"))
+        {
+            StartCoroutine(TakeDamage());
+        }
+    }
 
     public IEnumerator TakeDamage()
     {
@@ -98,7 +91,6 @@ public class PufferfishEnemyBehaviour : Enemy
 
         if(health < 1)
         {
-            
             Destroy(gameObject);
         }
     }
@@ -114,9 +106,9 @@ public class PufferfishEnemyBehaviour : Enemy
         ChangeState(EnemyState.attack);
         Vector2 direction = target.position - transform.position;
         //rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
         //rb.constraints = RigidbodyConstraints2D.None;
-        rb.AddForce(direction * 4, ForceMode2D.Impulse);
+        rb.AddForce(direction * 2, ForceMode2D.Impulse);
         yield return new WaitForSeconds(.1f);
         anim.SetBool("attack", true);
         Debug.Log("pufferfish dive");

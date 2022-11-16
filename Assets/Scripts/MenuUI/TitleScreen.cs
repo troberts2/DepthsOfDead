@@ -8,14 +8,13 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] GameObject toggleTutorial;
     [SerializeField]private JsonSerializer Serializer;
     [SerializeField] private PlayerMovement pm;
-    [SerializeField] private AudioSource StartEffect;
 
+    
     // Start is called before the first frame update
     void Start()
     {
         Serializer = GetComponent<JsonSerializer>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-       
     }
 
     // Update is called once per frame 
@@ -26,33 +25,25 @@ public class TitleScreen : MonoBehaviour
 
     public void StartGame()
     {
-     
-        
-            
-
-            pm.SetInit();
-            Serializer.Save();
-            if (toggleTutorial.activeInHierarchy == false)
+        pm.SetInit();
+        Serializer.Save();
+        if (toggleTutorial.activeInHierarchy == false)
+        {
+            int index = Random.Range(1, 6);
+            while (index == SceneManager.GetActiveScene().buildIndex)
             {
-
-
-           
-                
-                int index = Random.Range(1, 6);
-                while (index == SceneManager.GetActiveScene().buildIndex)
-                {
-                    index = Random.Range(1, 6);
-                }
-                SceneManager.LoadScene(index);
-
-                Debug.Log("this will start the game");
+                index = Random.Range(1, 6);
             }
-            else if (toggleTutorial.activeInHierarchy == true)
-            {
-                Debug.Log("would start tutorial");
-            }
+            SceneManager.LoadScene(index);
 
-        
+            Debug.Log("this will start the game");
+        }
+        else if (toggleTutorial.activeInHierarchy == true)
+        {
+            Debug.Log("would start tutorial");
+        }
+
+
 
 
 
@@ -76,18 +67,5 @@ public class TitleScreen : MonoBehaviour
 
         }
 
-    }
-
-    public void TutorialSceen()
-    {
-        SceneManager.LoadScene(10);
-    }
-    public void TutorialSceen2()
-    {
-        SceneManager.LoadScene(11);
-    }
-    public void BackToTitle()
-    {
-        SceneManager.LoadScene(0);
     }
 }
