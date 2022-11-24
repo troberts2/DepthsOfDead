@@ -12,6 +12,7 @@ TagManager:
   - Boss
   - wall
   - pit
+  - Grab
   layers:
   - Default
   - TransparentFX
