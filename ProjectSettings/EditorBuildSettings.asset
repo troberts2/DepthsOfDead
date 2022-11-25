@@ -5,25 +5,58 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: ed7c791f2cd750a4ba17827f5ea73300
+  - enabled: 1
+    path: Assets/Scenes/NavMesh1.unity
+    guid: 5a0785ce3933e6546b8c0eb2d9497dc2
+  - enabled: 1
+    path: Assets/Scenes/NavMesh2.unity
+    guid: 8c3ec682c47473f4c9fbcbef9f61b35f
+  - enabled: 1
+    path: Assets/Scenes/NavMesh3.unity
+    guid: b3d1cc8a50f878a46b2a7cc378a01c3a
+  - enabled: 1
+    path: Assets/Scenes/NavMesh4.unity
+    guid: 613db6dd71cdaf14f97bbbff12db5977
+  - enabled: 1
+    path: Assets/Scenes/NavMesh5.unity
+    guid: 4f500ebf58f71e84aa660d9983379566
+  - enabled: 1
+    path: Assets/Scenes/NavMesh6.unity
+    guid: 704d5f57d4c9b154ba3b22b318a7d5f5
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/AiTesting.unity
+    guid: fae369abdbf030a419da9d09d54cc073
   - enabled: 1
-    path: Assets/Scenes/FirstScene.unity
-    guid: c0c1f99304f276c4188e906dfe4b32a1
+    path: Assets/Scenes/NavMesh7.unity
+    guid: 1441c1862afd3974a9cd7dce4a231a0d
+  - enabled: 0
+    path: Assets/Scenes/NavMesh8.unity
+    guid: e9b24e5f77affda47aa4d4550a5e1cf9
+  - enabled: 0
+    path: Assets/Scenes/Platformer1.unity
+    guid: a3f6018c16dc321479fb6d8a779d0e10
+  - enabled: 0
+    path: Assets/Scenes/Platformer2.unity
+    guid: e172e32699372cd4fbb6e1ee3dc32406
+  - enabled: 0
+    path: Assets/Scenes/Platformer3.unity
+    guid: 7f26395979fda2b4492c827e2625ff6c
+  - enabled: 0
+    path: Assets/Scenes/Platformer4.unity
+    guid: b39985cc57db3b0429274d8b7f5951df
   - enabled: 1
-    path: Assets/Scenes/Port1.unity
-    guid: 5c91c43f3dacdfe40bb392a3bb958701
+    path: Assets/Scenes/Boss Scene.unity
+    guid: 4a9e519ba83a21445b570c081de84af4
   - enabled: 1
-    path: Assets/Scenes/Port2.unity
-    guid: 7a2170e3e26ecd94a9d592c9b59937af
+    path: Assets/Scenes/Tut1.unity
+    guid: 9ccf59579f55bff49b7294fa839789f0
   - enabled: 1
-    path: Assets/Scenes/Port3.unity
-    guid: e63712bffaf3718408278dd1ac4da158
-  - enabled: 1
-    path: Assets/Scenes/Port4.unity
-    guid: f48d161fadde54b42b2fdbdf40ce833c
-  - enabled: 1
-    path: Assets/Scenes/Port5.unity
-    guid: 24cbe17bc025af0409533b3bd4b13683
+    path: Assets/Scenes/Tut2.unity
+    guid: 8e59add07951a4d4e9484e3842509e8e
   m_configObjects: {}

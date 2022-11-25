@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3994098684581680116}
   - component: {fileID: 3994098684581680123}
   - component: {fileID: 3994098684581680112}
+  - component: {fileID: -3517357681338361843}
   m_Layer: 6
   m_Name: Skish
   m_TagString: Enemy
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: a8e63fe3db9da1b42ba98da43e74b80a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -179,8 +180,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   rb: {fileID: 0}
   fishProjectile: {fileID: 4055190551181566294, guid: c9375b626cb5b824abc30818ba523d96, type: 3}
-<<<<<<< Updated upstream
-=======
 --- !u!195 &-3517357681338361843
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -195,7 +194,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 5
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -203,4 +202,3 @@ NavMeshAgent:
   m_BaseOffset: 1.6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
->>>>>>> Stashed changes

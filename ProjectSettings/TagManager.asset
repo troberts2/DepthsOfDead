@@ -9,7 +9,10 @@ TagManager:
   - EnemyAttack
   - upgrade
   - door
-  - walls
+  - Boss
+  - wall
+  - pit
+  - Grab
   layers:
   - Default
   - TransparentFX

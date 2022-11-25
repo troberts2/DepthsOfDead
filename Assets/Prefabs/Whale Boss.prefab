@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113293869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.771, y: 0.37, z: 0}
+  m_LocalPosition: {x: -1.658, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8322062263641897024}
   m_Layer: 0
   m_Name: Whale Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c740a71714d40504ca8e11368246699c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d31f91d9c83d1842891169333de2e2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,14 +129,14 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 4.27}
+    oldSize: {x: 4.266667, y: 2.1333334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -148,14 +148,14 @@ PolygonCollider2D:
       - {x: -0.4209606, y: 0.61855906}
       - {x: -1.010239, y: 0.66875386}
       - {x: -1.5278704, y: 0.61976045}
-      - {x: -2.3209627, y: 0.53392667}
-      - {x: -2.6891208, y: 0.39775774}
-      - {x: -2.6221702, y: 0.26246774}
-      - {x: -2.3121338, y: 0.17223099}
+      - {x: -1.8376518, y: 0.5166656}
+      - {x: -1.9468937, y: 0.27693006}
+      - {x: -1.8281598, y: 0.0035512447}
+      - {x: -1.6734731, y: -0.40601584}
       - {x: -1.8851881, y: 0.00739431}
       - {x: -1.4771223, y: -0.22839054}
-      - {x: -1.4765342, y: -0.47372025}
-      - {x: -1.4273092, y: -0.91800106}
+      - {x: -1.0881596, y: -0.43919808}
+      - {x: -1.6775951, y: -0.40016806}
       - {x: -1.1874669, y: -0.33584365}
       - {x: -0.8541476, y: -0.7550916}
       - {x: 0.41184458, y: 0.4748969}
@@ -168,14 +168,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8322062263641897029}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -199,4 +199,3 @@ MonoBehaviour:
   bigBossBullet: {fileID: 0}
   normalBullet: {fileID: 4019306918914038621, guid: 977e136035ba0534aa95906fc4ef8c9a, type: 3}
   shootPoint: {fileID: 113293870}
-  bossState: 0

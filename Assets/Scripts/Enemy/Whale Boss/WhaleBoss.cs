@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BossState{
-    idle,
-    walk,
-    attack,
-    stagger
-}
 public class WhaleBoss : MonoBehaviour
 {
     [SerializeField]private int health;
@@ -16,7 +10,6 @@ public class WhaleBoss : MonoBehaviour
     [SerializeField]private GameObject bigBossBullet;
     [SerializeField]private GameObject normalBullet;
     [SerializeField]private Transform shootPoint;
-    public BossState bossState;
     private Transform player;
     private Rigidbody2D rb;
     private Animator anim;
@@ -37,7 +30,6 @@ public class WhaleBoss : MonoBehaviour
     void Update()
     {
         Movement();
-        shootPoint.transform.LookAt(player);
     }
 
     private void OnTriggerEnter2D (Collider2D collision)
@@ -55,10 +47,10 @@ public class WhaleBoss : MonoBehaviour
         }
     }
     void Movement(){
-        if(transform.position.y > 4f){
+        if(transform.position.y > 3.85f){
             moveUp = false;
         }
-        else if(transform.position.y < -4f){
+        else if(transform.position.y < -2.7f){
             moveUp = true;
         }
 
@@ -70,7 +62,6 @@ public class WhaleBoss : MonoBehaviour
         }
     }
     IEnumerator basicSprayAttack(){
-        bossState = BossState.attack;
         yield return new WaitForSeconds(4f);
         float startAngle = 180f;
         float endAngle = 0f;
@@ -93,32 +84,69 @@ public class WhaleBoss : MonoBehaviour
             }
             yield return new WaitForSeconds(.5f);
         }
-        bossState = BossState.walk;
-        StartCoroutine(basicSprayAttack());
-    }
-/*
-    IEnumerator CannonBallAttack()
-    {
-            float angleStep = 30f / numberOfProjectiles;
-            float angle = Vector3.Angle(Vector3.right, player.transform.position - transform.position);
-            if (player.transform.position.y < transform.position.y)
-                angle *= -1;
+        yield return new WaitForSeconds(4f);
+        StartCoroutine(SpawnProjectiles(15));
 
+    }
+
+    /*IEnumerator CannonExplodeAttack(){
+        yield return new WaitForSeconds(4f);
+        GameObject bul1 = Instantiate(bigBossBullet, shootPoint.position, Quaternion.identity);
+        bul1.transform.LookAt(new Vector3(player.position.x, player.position.y + 1, 0));
+        GameObject bul2 = Instantiate(bigBossBullet, shootPoint.position, Quaternion.identity);
+        bul2.transform.LookAt(new Vector3(player.position.x, player.position.y - 1, 0));
+        yield return new WaitForSeconds(4f);
+        StartCoroutine(CannonExplodeAttack());
+
+
+    }*/
+    IEnumerator SpawnProjectiles(int numberOfProjectiles)
+    {
+        float angleStep = 360f / numberOfProjectiles;
+        float angle = 0f;
+        for(int j = 0; j < 3; j++){
             for (int i = 0; i <= numberOfProjectiles - 1; i++)
             {
 
-                float projectileDirXposition = startPoint.x + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
-                float projectileDirYposition = startPoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+                float projectileDirXposition = shootPoint.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * 5;
+                float projectileDirYposition = shootPoint.position.y + Mathf.Cos((angle * Mathf.PI) / 180) * 5;
 
                 Vector2 projectileVector = new Vector2(projectileDirXposition, projectileDirYposition);
-                Vector2 projectileMoveDirection = (projectileVector - shootPoint).normalized * moveSpeed;
+                Vector2 projectileMoveDirection = (projectileVector - (Vector2)shootPoint.position).normalized * 5;
 
-                var proj = Instantiate(bigBossBullet, shootPoint.position, Quaternion.AngleAxis(angle, Vector3.forward));
-                proj.GetComponent<Rigidbody2D>().velocity =
-                    new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
+                var proj = Instantiate(normalBullet, shootPoint.position, Quaternion.identity);
+                proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
 
                 angle += angleStep;
-            }
+            }   
+            yield return new WaitForSeconds(.1f);
+        }
+        yield return new WaitForSeconds(4f);
+        StartCoroutine(SpawnProjectilesRotation(15));
+    }
 
-    }*/
+    IEnumerator SpawnProjectilesRotation(int numberOfProjectiles)
+    {
+        float angleStep = 360f / numberOfProjectiles;
+        float angle = 0f;
+
+        for (int i = 0; i <= numberOfProjectiles - 1; i++)
+        {
+
+            float projectileDirXposition = shootPoint.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * 5;
+            float projectileDirYposition = shootPoint.position.y + Mathf.Cos((angle * Mathf.PI) / 180) * 5;
+
+            Vector2 projectileVector = new Vector2(projectileDirXposition, projectileDirYposition);
+            Vector2 projectileMoveDirection = (projectileVector - (Vector2)shootPoint.position).normalized * 5;
+
+            var proj = Instantiate(normalBullet, shootPoint.position, Quaternion.identity);
+            proj.GetComponent<Rigidbody2D>().velocity =
+                new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
+
+            angle += angleStep;
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return new WaitForSeconds(4f);
+        StartCoroutine(basicSprayAttack());
+    }
 }
