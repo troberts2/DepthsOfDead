@@ -12,12 +12,9 @@ public class PufferfishEnemyBehaviour : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+       target = GameObject.FindGameObjectWithTag("Player").transform;
+       rb = GetComponent<Rigidbody2D>();
+       anim = GetComponent<Animator>();
     }
 
     void Update(){
@@ -34,10 +31,10 @@ public class PufferfishEnemyBehaviour : Enemy
         Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
-            if(currentState == EnemyState.idle || currentState == EnemyState.walk ){
+            if(currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger && currentState != EnemyState.attack){
                 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-                rb.MovePosition(temp);
-                Debug.Log("enemy move");
+                transform.position = temp;
+                Debug.Log("pufferfish move");
                 ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);
             }

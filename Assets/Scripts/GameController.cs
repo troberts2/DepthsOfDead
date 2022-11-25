@@ -13,12 +13,14 @@ public class GameController : MonoBehaviour
     private bool cardsDropped = false;
     [SerializeField]private GameObject door;
     [SerializeField] private PlayerMovement pm;
+    private Camera cam;
     // Start is called before the first frame update
     void Start()
     {
         Serializer = GetComponent<JsonSerializer>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         Serializer.Load();
+        cam = Camera.main;
     }
 
     // Update is called once per frame
