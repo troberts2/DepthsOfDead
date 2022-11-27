@@ -139,6 +139,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 132682461254251777, guid: 32a558a85256cf34da214e953f82c55a, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 948627917793049505, guid: 32a558a85256cf34da214e953f82c55a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5579394569884218184, guid: 32a558a85256cf34da214e953f82c55a, type: 3}
       propertyPath: m_Name
       value: Pufferfish (4)
@@ -194,6 +202,18 @@ PrefabInstance:
     - target: {fileID: 5579394569884218189, guid: 32a558a85256cf34da214e953f82c55a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579394569884218191, guid: 32a558a85256cf34da214e953f82c55a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579394569884218191, guid: 32a558a85256cf34da214e953f82c55a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831372887563274304, guid: 32a558a85256cf34da214e953f82c55a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32a558a85256cf34da214e953f82c55a, type: 3}

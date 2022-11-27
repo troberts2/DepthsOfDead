@@ -8,6 +8,7 @@ public class PufferfishEnemyBehaviour : Enemy
 {
     private NavMeshAgent agent;
     [SerializeField] private GameObject explosion;
+    private bool isAttacking = false;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,10 @@ public class PufferfishEnemyBehaviour : Enemy
         if(Vector3.Distance(transform.position, target.position) <= attackRadius && currentState != EnemyState.attack){
             StartCoroutine(ExplodeFish());
         }
+        if(isAttacking)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, 10 * Time.deltaTime);
+        }
     }
     void FixedUpdate()
     {
@@ -28,11 +33,11 @@ public class PufferfishEnemyBehaviour : Enemy
     }
 
     void CheckDistance(){
-        Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        Vector3 temp = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         ChangeAnim(temp - transform.position);
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius){
             if(currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger && currentState != EnemyState.attack){
-                temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+                temp = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
                 transform.position = temp;
                 Debug.Log("pufferfish move");
                 ChangeState(EnemyState.walk);
@@ -102,16 +107,19 @@ public class PufferfishEnemyBehaviour : Enemy
 
     IEnumerator ExplodeFish(){
         ChangeState(EnemyState.attack);
-        Vector2 direction = target.position - transform.position;
+        Vector2 direction = -(transform.position - target.position).normalized;
+        Debug.DrawRay(transform.position, direction, Color.blue, 5f);
         //rb.constraints = RigidbodyConstraints2D.FreezeAll;
         yield return new WaitForSeconds(.5f);
         //rb.constraints = RigidbodyConstraints2D.None;
-        rb.AddForce(direction * 2, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(.1f);
+        isAttacking = true;
+        yield return new WaitForSeconds(.15f);
+        isAttacking = false;
         anim.SetBool("attack", true);
-        Debug.Log("pufferfish dive");
-        yield return new WaitForSeconds(.2f);
-        Destroy(gameObject);
 
+    }
+    public void PufferfishDeath()
+    {
+        Destroy(gameObject);
     }
 }
