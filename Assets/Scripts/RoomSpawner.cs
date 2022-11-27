@@ -7,7 +7,7 @@ public class RoomSpawner : MonoBehaviour
 {
     public int currentScene;
     private PlayerMovement pm;
-    private int bossSceneNum = 8;
+    private int bossSceneNum = 13;
     private JsonSerializer Serializer;
     void Start(){
         Serializer = GetComponent<JsonSerializer>();
@@ -31,9 +31,9 @@ public class RoomSpawner : MonoBehaviour
         if(pm.roomNum > 5){
             SceneManager.LoadScene(bossSceneNum);
         }else{
-            int index = Random.Range(1, 7);
+            int index = Random.Range(1, 12);
             while(index == currentScene){
-                index = Random.Range(1, 7);
+                index = Random.Range(1, 12);
             }
             SceneManager.LoadScene(index);
         }  
