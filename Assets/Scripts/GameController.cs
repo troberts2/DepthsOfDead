@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
     [SerializeField]private GameObject door;
     [SerializeField] private PlayerMovement pm;
     private Camera cam;
+
+
+    [SerializeField] private AudioSource DoorAppear;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,5 +67,6 @@ public class GameController : MonoBehaviour
         cam.transform.position = ogPos;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().constraints = gameplayRestraints;
         Debug.Log("door should appear");
+        DoorAppear.Play();
     }
 }

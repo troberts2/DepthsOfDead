@@ -170,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         sr.color = Color.red;
         if(playerHealth < 0)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(12);
         }
         yield return new WaitForSeconds(1f);
         sr.color = Color.white;
@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public void SetInit(){
-        playerHealth = 20;
+        playerHealth = 10;
         baseDamage = 1;
         playerSpeed = 5;
         roomNum = 0;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WhaleBoss : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class WhaleBoss : MonoBehaviour
         {
             health -= pm.baseDamage;
             if(health < 0){
-                Destroy(gameObject);
+                SceneManager.LoadScene(13);
             }
         }
     }

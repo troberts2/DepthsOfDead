@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class MeleeEnemyBehaviour : Enemy
 {
     private NavMeshAgent agent;
-
+    [SerializeField] private AudioSource meleeHit;
     public string sceneToLoad;
     private bool canShoot = true;
     // Start is called before the first frame update
@@ -93,6 +93,7 @@ public class MeleeEnemyBehaviour : Enemy
         while(!done)
         {
             sr.color = Color.red;
+            meleeHit.Play();
             yield return new WaitForSeconds(.5f);
             done = true;
             sr.color = ogColor;

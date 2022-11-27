@@ -8,6 +8,7 @@ public class ProjectileEnemy : Enemy
     [SerializeField]private GameObject fishProjectile;
     private bool canShoot = true;
     private NavMeshAgent agent;
+    [SerializeField] private AudioSource Prohit;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +88,7 @@ public class ProjectileEnemy : Enemy
         currentState = EnemyState.stagger;
         while(!done)
         {
+            Prohit.Play();
             sr.color = Color.red;
             yield return new WaitForSeconds(.5f);
             done = true;

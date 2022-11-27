@@ -10,6 +10,8 @@ public class PufferfishEnemyBehaviour : Enemy
     [SerializeField] private GameObject explosion;
     private bool isAttacking = false;
     
+    [SerializeField] private AudioSource pufferHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +88,7 @@ public class PufferfishEnemyBehaviour : Enemy
         while(!done)
         {
             sr.color = Color.red;
+            pufferHit.Play();
             yield return new WaitForSeconds(.5f);
             done = true;
             sr.color = ogColor;

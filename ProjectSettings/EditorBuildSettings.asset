@@ -59,4 +59,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tut2.unity
     guid: 8e59add07951a4d4e9484e3842509e8e
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: c7ab0ed3bb8e56746a86deaa1e0eaa0b
+  - enabled: 1
+    path: Assets/Scenes/YouDied.unity
+    guid: 31002a0bfb5425c4f8f25e8be701f1ce
+  - enabled: 1
+    path: Assets/Scenes/YouWin.unity
+    guid: 3fe25069c88187f4593fd9b0e20bb172
   m_configObjects: {}
