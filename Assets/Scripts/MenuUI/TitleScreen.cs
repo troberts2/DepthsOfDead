@@ -70,11 +70,11 @@ public class TitleScreen : MonoBehaviour
     }
     public void Tutorial()
     {
-        SceneManager.LoadScene(9);
+        SceneManager.LoadScene(14);
     }
     public void TutorialNext()
     {
-        SceneManager.LoadScene(10);
+        SceneManager.LoadScene(15);
 
     }
     public void ReturnToStart()

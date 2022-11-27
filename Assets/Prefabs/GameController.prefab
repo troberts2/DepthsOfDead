@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f2dee64d9a7ab4a97b30fa160dbbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayRestraints: 4
   doorPos: {x: 0, y: 0}
   Serializer: {fileID: 0}
   upgrades:
@@ -67,8 +68,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761042079d12d17449054941a86a6dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GSD:
-    playerHealth: 0
-    playerDamage: 0
-    playerSpeed: 0
   pm: {fileID: 0}
