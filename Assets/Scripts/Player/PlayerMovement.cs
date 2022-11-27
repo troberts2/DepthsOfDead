@@ -28,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canDash = true;
     private bool isDashing = false;
-    public float dashDistance = 1.5f;
-    public float dashDuration = 0.15f;
+    public float dashDistance = 2f;
+    public float dashDuration = 0.2f;
 
     public TextMeshProUGUI livesText;
 
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             }
          }
      }
-    IEnumerator Movement()
+    public IEnumerator Movement()
     {
         while(true)
         {
@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public void SetInit(){
-        playerHealth = 500;
+        playerHealth = 20;
         baseDamage = 1;
         playerSpeed = 5;
         roomNum = 0;

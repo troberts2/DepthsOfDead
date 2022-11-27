@@ -50,11 +50,18 @@ public class GameController : MonoBehaviour
         GameObject.Destroy(upgrade);
         pm.roomNum++;
         Serializer.Save();
-        InstantiateDoor();
+        StartCoroutine(InstantiateDoor());
+
     }
 
-    void InstantiateDoor(){
+    IEnumerator InstantiateDoor(){
         door.SetActive(true);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        Vector3 ogPos = cam.transform.position;
+        cam.transform.position = new Vector3(door.transform.position.x, door.transform.position.y, -28f);
+        yield return new WaitForSeconds(1f);
+        cam.transform.position = ogPos;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         Debug.Log("door should appear");
     }
 }
