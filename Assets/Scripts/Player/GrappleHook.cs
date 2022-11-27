@@ -5,8 +5,8 @@ using UnityEngine;
 public class GrappleHook : MonoBehaviour
 {
     LineRenderer line;
-    [SerializeField] private LayerMask grapplableMask;
-    [SerializeField] private float maxDist = 10f;
+    [SerializeField] private ContactFilter2D grapplableMask;
+    [SerializeField] private float maxDist = 20f;
     [SerializeField] private float grappleSpeed = 10f;
     [SerializeField] private float grappleShootSpeed = 20f;
     [SerializeField] private GameObject harpoon;
@@ -43,23 +43,25 @@ public class GrappleHook : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         //shoots grapple if not already grappling
-        if(Input.GetMouseButtonDown(0) && !isGrappling) 
+        if (Input.GetMouseButtonDown(0) && !isGrappling)
         {
             StartGrapple();
         }
-        if(impHarpoon != null){
+        if (impHarpoon != null)
+        {
             impHarpoon.transform.position = targetObj.transform.position;
         }
-        if(retracting)
+        if (retracting)
         {
             Vector2 grapplePos;
 
-            if(isPulling)
+            if (isPulling)
             {
                 grapplePos = Vector2.Lerp(targetObj.transform.position, transform.position, grappleSpeed * Time.deltaTime);
                 targetObj.transform.position = grapplePos;
                 playerCollider.enabled = false;
-            }else
+            }
+            else
             {
                 grapplePos = Vector2.Lerp(transform.position, targetObj.transform.position, grappleSpeed * Time.deltaTime);
                 player.position = grapplePos;
@@ -70,7 +72,7 @@ public class GrappleHook : MonoBehaviour
             line.SetPosition(1, targetObj.transform.position);
             impHarpoon.transform.position = targetObj.transform.position;
 
-            if(Vector2.Distance(player.position, targetObj.transform.position) < 1.5f)
+            if (Vector2.Distance(player.position, targetObj.transform.position) < 1.5f)
             {
                 Destroy(impHarpoon);
                 retracting = false;
@@ -79,7 +81,7 @@ public class GrappleHook : MonoBehaviour
                 StartCoroutine(colliderEnable());
             }
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log("r pressed");
             Destroy(impHarpoon);
@@ -91,15 +93,24 @@ public class GrappleHook : MonoBehaviour
 
     void StartGrapple()
     {
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDist, grapplableMask);
+        List<RaycastHit2D> hits = new List<RaycastHit2D>();
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = ((Vector2)transform.position - mousePos).normalized;
+        //Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Physics2D.Raycast(transform.position, -direction * maxDist, grapplableMask, hits);
+        Debug.DrawLine(transform.position, mousePos, Color.blue, 5f);
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDist, grapplableMask);
         //if raycast hit enemy layer shoot a line to it
-        if(hit.collider != null)
-        {
-            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("wall")){
 
-            }else{
+        if (hits.Count > 0)
+        {
+            var hit = hits[0];
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("wall"))
+            {
+
+            }
+            else
+            {
                 isGrappling = true;
                 target = hit.point;
                 targetObj = hit.collider.gameObject;
@@ -122,16 +133,16 @@ public class GrappleHook : MonoBehaviour
         Vector2 newPos;
         Vector3 targ = targetObj.transform.position;
         targ.z = 0f;
- 
+
         Vector3 objectPos = transform.position;
         targ.x = targ.x - objectPos.x;
         targ.y = targ.y - objectPos.y;
- 
+
         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg - 90;
         impHarpoon = Instantiate(harpoon, shootPoint.position, Quaternion.identity);
         impHarpoon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         //this is the part that send the line renderer
-        for(; t< time; t += grappleShootSpeed * Time.deltaTime)
+        for (; t < time; t += grappleShootSpeed * Time.deltaTime)
         {
             newPos = Vector2.Lerp(transform.position, targetObj.transform.position, t / time);
             impHarpoon.transform.position = newPos;
@@ -141,19 +152,21 @@ public class GrappleHook : MonoBehaviour
         }
         line.SetPosition(1, target);
         bool done = false;
-        while(!done)
+        while (!done)
         {
             line.SetPosition(0, transform.position);
             line.SetPosition(1, targetObj.transform.position);
             impHarpoon.transform.position = targetObj.transform.position;
-            if(targetObj.layer == LayerMask.NameToLayer("Enemy"))
+            if (targetObj.layer == LayerMask.NameToLayer("Enemy"))
             {
-                if(Input.GetKeyDown(KeyCode.S)){
-                isPulling = true;
-                done = true;
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    isPulling = true;
+                    done = true;
                 }
             }
-            if(Input.GetKeyDown(KeyCode.W)){
+            if (Input.GetKeyDown(KeyCode.W))
+            {
                 isPulling = false;
                 done = true;
             }
@@ -161,8 +174,9 @@ public class GrappleHook : MonoBehaviour
         }
         retracting = true;
     }
-    IEnumerator colliderEnable(){
+    IEnumerator colliderEnable()
+    {
         yield return new WaitForSeconds(1f);
-        playerCollider.enabled =true;
+        playerCollider.enabled = true;
     }
 }
