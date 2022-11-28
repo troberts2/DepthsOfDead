@@ -170,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         sr.color = Color.red;
         if(playerHealth < 0)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(12);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(17);
         }
         yield return new WaitForSeconds(1f);
         sr.color = Color.white;

@@ -8,8 +8,9 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] GameObject toggleTutorial;
     [SerializeField]private JsonSerializer Serializer;
     [SerializeField] private PlayerMovement pm;
+    [SerializeField] private AudioClip menuSound;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +84,11 @@ public class TitleScreen : MonoBehaviour
     }
     public void GoToCredits()
     {
-        SceneManager.LoadScene(11);
+        SceneManager.LoadScene(16);
     }
+    public void PlayTheSound()
+    {
+        SoundManager.Instance.PlayAudioClip(menuSound);
+    }
+   
 }

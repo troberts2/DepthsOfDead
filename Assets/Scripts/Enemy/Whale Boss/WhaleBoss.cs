@@ -43,7 +43,7 @@ public class WhaleBoss : MonoBehaviour
         {
             health -= pm.baseDamage;
             if(health < 0){
-                SceneManager.LoadScene(13);
+                SceneManager.LoadScene(18);
             }
         }
     }
