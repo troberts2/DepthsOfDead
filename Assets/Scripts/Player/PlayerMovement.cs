@@ -159,6 +159,10 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(TakeDamage(1));
         }
+        if(collider.CompareTag("pit") && iframes == false)
+        {
+            StartCoroutine(TakeDamage(1));
+        }
     }
 
     IEnumerator TakeDamage(int amt){

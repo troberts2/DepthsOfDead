@@ -78,6 +78,10 @@ public class ProjectileEnemy : Enemy
         {
             StartCoroutine(TakeDamage());
         }
+        if(collision.CompareTag("pit")){
+            agent.enabled = false;
+            Destroy(gameObject);
+        }
     }
     IEnumerator TakeDamage()
     {
