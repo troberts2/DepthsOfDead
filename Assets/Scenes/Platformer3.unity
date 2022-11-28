@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7305195512201224596, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
+      propertyPath: m_TagString
+      value: pit
+      objectReference: {fileID: 0}
     - target: {fileID: 7305195512201224599, guid: 6d38672edf1ef64449f97d1b0e047197, type: 3}
       propertyPath: player
       value: 
@@ -18564,7 +18568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4699048890990551183, guid: a13803db8c6ff7b4790366143ba991b0, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4699048890990551183, guid: a13803db8c6ff7b4790366143ba991b0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -19154,7 +19158,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1574310487
 PrefabInstance:
