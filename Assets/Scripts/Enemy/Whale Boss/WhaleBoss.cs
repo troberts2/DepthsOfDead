@@ -72,6 +72,7 @@ public class WhaleBoss : MonoBehaviour
         int sprayLoop = 4;
 
         for(int j = 0; j < sprayLoop; j++){
+            anim.SetBool("attack", true);
             for(int i = 0; i < bulletsAmount + 1; i++){
                 float bulDirX = transform.position.x +Mathf.Sin((angle * Mathf.PI) / 180f);
                 float bulDirY = transform.position.y +Mathf.Cos((angle * Mathf.PI) / 180f);
@@ -84,6 +85,7 @@ public class WhaleBoss : MonoBehaviour
                 angle += angleStep;
             }
             yield return new WaitForSeconds(.5f);
+            anim.SetBool("attack", false);
         }
         yield return new WaitForSeconds(4f);
         StartCoroutine(SpawnProjectiles(15));
@@ -105,6 +107,7 @@ public class WhaleBoss : MonoBehaviour
     {
         float angleStep = 360f / numberOfProjectiles;
         float angle = 0f;
+        anim.SetBool("attack", true);
         for(int j = 0; j < 3; j++){
             for (int i = 0; i <= numberOfProjectiles - 1; i++)
             {
@@ -122,6 +125,7 @@ public class WhaleBoss : MonoBehaviour
             }   
             yield return new WaitForSeconds(.1f);
         }
+        anim.SetBool("attack", false);
         yield return new WaitForSeconds(4f);
         StartCoroutine(SpawnProjectilesRotation(15));
     }
@@ -130,7 +134,7 @@ public class WhaleBoss : MonoBehaviour
     {
         float angleStep = 360f / numberOfProjectiles;
         float angle = 0f;
-
+        anim.SetBool("attack", true);
         for (int i = 0; i <= numberOfProjectiles - 1; i++)
         {
 
@@ -147,6 +151,7 @@ public class WhaleBoss : MonoBehaviour
             angle += angleStep;
             yield return new WaitForSeconds(0.05f);
         }
+        anim.SetBool("attack", false);
         yield return new WaitForSeconds(4f);
         StartCoroutine(basicSprayAttack());
     }

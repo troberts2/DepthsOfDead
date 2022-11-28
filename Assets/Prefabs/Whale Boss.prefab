@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8322062263641897027}
   - component: {fileID: 8322062263641897028}
   - component: {fileID: 8322062263641897024}
+  - component: {fileID: 991320631}
   m_Layer: 0
   m_Name: Whale Boss
   m_TagString: Boss
@@ -199,3 +200,23 @@ MonoBehaviour:
   bigBossBullet: {fileID: 0}
   normalBullet: {fileID: 4019306918914038621, guid: 977e136035ba0534aa95906fc4ef8c9a, type: 3}
   shootPoint: {fileID: 113293870}
+--- !u!95 &991320631
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322062263641897029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a8c10b5b5e48a040bfa12a30895d7db, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
