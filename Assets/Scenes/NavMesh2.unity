@@ -24023,6 +24023,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5924399491194164040, guid: eec46e31fc49dea4ebf379b4cb31d585, type: 3}
   m_PrefabInstance: {fileID: 679859125}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &679859128 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5924399491194164041, guid: eec46e31fc49dea4ebf379b4cb31d585, type: 3}
+  m_PrefabInstance: {fileID: 679859125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &762614014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24095,6 +24100,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 679859126}
+    - target: {fileID: 5013096498435939508, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 679859128}
     - target: {fileID: 5013096498435939509, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
       propertyPath: m_RootOrder
       value: 20

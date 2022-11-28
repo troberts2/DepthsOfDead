@@ -20280,6 +20280,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1209871418}
+    - target: {fileID: 5013096498435939508, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1209871416}
     - target: {fileID: 5013096498435939509, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
       propertyPath: m_RootOrder
       value: 19

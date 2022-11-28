@@ -18971,6 +18971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 551241560f47d2e4c97129f49637f923, type: 3}
+--- !u!1 &1027624420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6382765277084982805, guid: 551241560f47d2e4c97129f49637f923, type: 3}
+  m_PrefabInstance: {fileID: 1027624419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1029458105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19035,6 +19040,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5013096498435939508, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1027624420}
     - target: {fileID: 5013096498435939508, guid: d11d7c979bfeb2944abcba4fce263891, type: 3}
       propertyPath: canvas
       value: 
