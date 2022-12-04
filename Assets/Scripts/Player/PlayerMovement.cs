@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        healthbar.SetHealth(playerHealth);
         if(gh.retracting)
         {
             rb.velocity = Vector2.zero;
@@ -228,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = respawnPoint.position;
         playerHealth--;
+        healthbar.SetHealth(playerHealth);
         iframes = false;
     }
 }
