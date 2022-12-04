@@ -39,5 +39,6 @@ public class MenuController : MonoBehaviour
     public void resetGame()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 }

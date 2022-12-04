@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8439541041777024401}
   - component: {fileID: 1059035090455722839}
+  - component: {fileID: 4542562708694952822}
   m_Layer: 0
   m_Name: Harpoon 1
-  m_TagString: Untagged
+  m_TagString: harpoonHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &4542562708694952822
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224727073726508658}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.2, y: 3.1999998}
+  m_Direction: 0

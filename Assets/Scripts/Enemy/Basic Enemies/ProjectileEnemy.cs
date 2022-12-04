@@ -77,10 +77,20 @@ public class ProjectileEnemy : Enemy
         if(collision.CompareTag("attack"))
         {
             StartCoroutine(TakeDamage());
+
         }
         if(collision.CompareTag("pit")){
-            agent.enabled = false;
             Destroy(gameObject);
+        }
+        if(collision.CompareTag("harpoonHit")){
+            agent.enabled = false;
+            ChangeState(EnemyState.stagger);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collider){
+        if(collider.CompareTag("harpoonHit")){
+            agent.enabled = true;
+            ChangeState(EnemyState.idle);
         }
     }
     IEnumerator TakeDamage()
@@ -89,7 +99,7 @@ public class ProjectileEnemy : Enemy
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         bool done = false;
         health--;
-        currentState = EnemyState.stagger;
+        agent.enabled = false;
         while(!done)
         {
             Prohit.Play();
@@ -97,9 +107,10 @@ public class ProjectileEnemy : Enemy
             yield return new WaitForSeconds(.5f);
             done = true;
             sr.color = ogColor;
-            currentState = EnemyState.idle;
+            ChangeState(EnemyState.stagger);
         }
-
+        ChangeState(EnemyState.idle);
+        agent.enabled = true;
         if(health < 1)
         {
             Destroy(gameObject);

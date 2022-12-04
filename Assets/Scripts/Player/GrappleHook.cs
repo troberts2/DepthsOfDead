@@ -26,6 +26,7 @@ public class GrappleHook : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D playerCollider;
     private Camera cam;
+    private PlayerMovement pm;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class GrappleHook : MonoBehaviour
         cam = Camera.main;
         player = GameObject.FindWithTag("Player").transform;
         playerCollider = GetComponent<BoxCollider2D>();
+        pm = GetComponent<PlayerMovement>();
 
         //StartCoroutine(meleeAttack());
     }
@@ -43,11 +45,21 @@ public class GrappleHook : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         //shoots grapple if not already grappling
+        if(isGrappling){
+            if(targetObj == null){
+                Destroy(impHarpoon);
+                retracting = false;
+                isGrappling = false;
+                line.enabled = false;
+                StartCoroutine(colliderEnable());
+
+            }
+        }
         if (Input.GetMouseButtonDown(0) && !isGrappling)
         {
             StartGrapple();
         }
-        if (impHarpoon != null)
+        if (impHarpoon != null && targetObj != null)
         {
             impHarpoon.transform.position = targetObj.transform.position;
         }
@@ -80,6 +92,10 @@ public class GrappleHook : MonoBehaviour
                 line.enabled = false;
                 StartCoroutine(colliderEnable());
             }
+            
+        }
+        else{
+            
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -173,6 +189,7 @@ public class GrappleHook : MonoBehaviour
             yield return null;
         }
         retracting = true;
+        pm.enabled = false;
     }
     IEnumerator colliderEnable()
     {

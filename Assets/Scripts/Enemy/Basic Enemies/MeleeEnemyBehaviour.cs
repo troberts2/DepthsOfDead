@@ -41,6 +41,19 @@ public class MeleeEnemyBehaviour : Enemy
         {
             StartCoroutine(TakeDamage());
         }
+        if(collision.CompareTag("pit")){
+            Destroy(gameObject);
+        }
+        if(collision.CompareTag("harpoonHit")){
+            agent.enabled = false;
+            ChangeState(EnemyState.stagger);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collider){
+        if(collider.CompareTag("harpoonHit")){
+            agent.enabled = true;
+            ChangeState(EnemyState.idle);
+        }
     }
     void CheckDistance(){
         Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);

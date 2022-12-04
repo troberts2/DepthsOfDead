@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -67,6 +67,30 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -78,7 +102,301 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: WhalerDrowning_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 9
+        width: 182
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48efd760b0783784091912bc20ede4c5
+      internalID: 153090757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_1
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 40
+        width: 180
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8630c051cc4ea0b47bc83b9827304c6d
+      internalID: 633289685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_2
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 58
+        width: 220
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 231f0aa8bdd02374b8729d41515394a8
+      internalID: 1557798923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_3
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 79
+        width: 255
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3b05cc5c30aab4c8e7c8fd1d3a941f
+      internalID: 767548123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_4
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 82
+        width: 271
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19ab8c37a5bf839459d8a0b99e429cc5
+      internalID: 1561660063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_5
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 119
+        width: 282
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 873741d550abe2d4da2a00ec09cc47c7
+      internalID: -1962120236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_6
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 118
+        width: 272
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c6cd0472e40f5743bce78a286845782
+      internalID: -1318305635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_7
+      rect:
+        serializedVersion: 2
+        x: 2213
+        y: 159
+        width: 317
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f468946a1662a064d97864b71e760b80
+      internalID: -477373734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_8
+      rect:
+        serializedVersion: 2
+        x: 2620
+        y: 180
+        width: 181
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66e07cf823af141459b70f2ca4e27f6a
+      internalID: -607937937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_9
+      rect:
+        serializedVersion: 2
+        x: 2939
+        y: 199
+        width: 181
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3cd785732d3b44ba488f5764e185a8
+      internalID: 1004982144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_10
+      rect:
+        serializedVersion: 2
+        x: 3260
+        y: 220
+        width: 181
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4d252502811a944d988992e558030da
+      internalID: -1361736673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_11
+      rect:
+        serializedVersion: 2
+        x: 3591
+        y: 241
+        width: 159
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df2310d3284d79f478d4e95dac1dca24
+      internalID: -426659598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_12
+      rect:
+        serializedVersion: 2
+        x: 3919
+        y: 259
+        width: 140
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58eb5784c97f8ff45a67ba621665ad5f
+      internalID: 993422349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhalerDrowning_13
+      rect:
+        serializedVersion: 2
+        x: 4259
+        y: 280
+        width: 100
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078ca0ddc6456204e838c9ec78c7fb55
+      internalID: -2085907267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -89,7 +407,59 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WhalerDrowning_3: 767548123
+      WhalerDrowning_2: 1557798923
+      WhalerDrowning_8: -607937937
+      WhalerDrowning_30: 2053736481
+      WhalerDrowning_29: -79082024
+      WhalerDrowning_14: 2048090791
+      WhalerDrowning_17: -811412337
+      WhalerDrowning_31: 543403948
+      WhalerDrowning_26: -593683230
+      WhalerDrowning_1: 633289685
+      WhalerDrowning_38: 1462759105
+      WhalerDrowning_25: 1326586592
+      WhalerDrowning_40: -1349937292
+      WhalerDrowning_33: -18728678
+      WhalerDrowning_43: 1356082074
+      WhalerDrowning_50: -632030055
+      WhalerDrowning_15: -1930026986
+      WhalerDrowning_9: 1004982144
+      WhalerDrowning_39: 618510569
+      WhalerDrowning_34: -202940137
+      WhalerDrowning_27: 1407002295
+      WhalerDrowning_12: 993422349
+      WhalerDrowning_16: -1140217233
+      WhalerDrowning_35: 2101466016
+      WhalerDrowning_4: 1561660063
+      WhalerDrowning_19: -234562960
+      WhalerDrowning_45: 1219107458
+      WhalerDrowning_18: 330709899
+      WhalerDrowning_36: 1025170944
+      WhalerDrowning_0: 153090757
+      WhalerDrowning_10: -1361736673
+      WhalerDrowning_42: -294392175
+      WhalerDrowning_47: 904722589
+      WhalerDrowning_28: 2064674676
+      WhalerDrowning_46: -20871276
+      WhalerDrowning_48: 161805560
+      WhalerDrowning_7: -477373734
+      WhalerDrowning_6: -1318305635
+      WhalerDrowning_13: -2085907267
+      WhalerDrowning_41: -1755442856
+      WhalerDrowning_5: -1962120236
+      WhalerDrowning_51: 1684838154
+      WhalerDrowning_49: 902049767
+      WhalerDrowning_22: -21368420
+      WhalerDrowning_20: 968408790
+      WhalerDrowning_11: -426659598
+      WhalerDrowning_32: -1404735534
+      WhalerDrowning_44: -1001091908
+      WhalerDrowning_21: -512148772
+      WhalerDrowning_37: -1735456094
+      WhalerDrowning_23: 750954717
+      WhalerDrowning_24: 973100665
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

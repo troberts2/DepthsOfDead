@@ -7,11 +7,14 @@ public class PitBehaviour : MonoBehaviour
 
     public GameObject player;
     public Transform respawnPoint;
+    PlayerMovement pm;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -20,13 +23,5 @@ public class PitBehaviour : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            player.transform.position = respawnPoint.position;
-
-        }
-    }
 
 }

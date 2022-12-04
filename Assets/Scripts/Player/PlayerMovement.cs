@@ -16,25 +16,25 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private playerState currentState;
     [SerializeField] public float playerSpeed;
-    [SerializeField] public int playerHealth = 5;
+    [SerializeField] public int playerHealth = 10;
     
     [SerializeField] private AudioSource GettingHit;
     [SerializeField] private AudioSource Dashing;
+    public healthBar healthbar;
 
     public int baseDamage = 1;
     public JsonSerializer Serializer;
     private bool iframes = false;
-    private float mx, my;
+    public float mx, my;
 
     private bool canDash = true;
     private bool isDashing = false;
     public float dashDistance = 2f;
     public float dashDuration = 0.2f;
 
-    public TextMeshProUGUI livesText;
-
     private Rigidbody2D rb;
     private Animator animator;
+    [SerializeField] private Transform respawnPoint;
     [SerializeField]private Camera cam;
 
     private Vector2 mousePos;
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D playerCollider;
     [SerializeField]private GameObject attackPrefab;
     public int roomNum;
+    private float ogSpeed;
      
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         playerCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         StartCoroutine(Movement());
+        healthbar.SetMaxHealth(10);
+        healthbar.SetHealth(playerHealth);
     }
 
     void FixedUpdate()
@@ -62,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-        livesText.text = "Lives: " + playerHealth;
 
     }
 
@@ -161,12 +163,18 @@ public class PlayerMovement : MonoBehaviour
         }
         if(collider.CompareTag("pit") && iframes == false)
         {
-            StartCoroutine(TakeDamage(1));
+            //StartCoroutine(drown());
+            iframes =true;
+            animator.SetBool("drowning", true);
+            ChangeState(playerState.idle);
+            ogSpeed = playerSpeed;
+            playerSpeed = 0;
         }
     }
 
     IEnumerator TakeDamage(int amt){
         playerHealth -= amt;
+        healthbar.SetHealth(playerHealth);
         iframes = true;
         Color ogColor = GetComponent<SpriteRenderer>().color;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -198,5 +206,28 @@ public class PlayerMovement : MonoBehaviour
         baseDamage = 1;
         playerSpeed = 5;
         roomNum = 0;
+    }
+
+    IEnumerator drown(){
+        iframes =true;
+        animator.SetBool("drowning", true);
+        ChangeState(playerState.idle);
+        float ogSpeed = playerSpeed;
+        playerSpeed = 0;
+        yield return new WaitForSeconds(1.1f);
+        playerSpeed = ogSpeed;
+        animator.SetBool("drowning", false);
+
+        transform.position = respawnPoint.position;
+        playerHealth--;
+        iframes = false;
+    }
+    void endDrown(){
+        playerSpeed = ogSpeed;
+        animator.SetBool("drowning", false);
+
+        transform.position = respawnPoint.position;
+        playerHealth--;
+        iframes = false;
     }
 }

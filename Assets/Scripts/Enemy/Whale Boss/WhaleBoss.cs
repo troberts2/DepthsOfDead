@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WhaleBoss : MonoBehaviour
 {
-    [SerializeField]private int health;
+    [SerializeField]private int health = 20;
     [SerializeField]private int damage;
     [SerializeField]private int shootSpeed;
     [SerializeField]private GameObject bigBossBullet;
@@ -17,6 +17,7 @@ public class WhaleBoss : MonoBehaviour
     private PlayerMovement pm;
     float moveSpeed = 2f;
     bool moveUp = true;
+    public healthBar healthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,7 @@ public class WhaleBoss : MonoBehaviour
         if(collision.CompareTag("attack"))
         {
             health -= pm.baseDamage;
+            healthBar.SetHealth(health);
             if(health < 0){
                 SceneManager.LoadScene(18);
             }

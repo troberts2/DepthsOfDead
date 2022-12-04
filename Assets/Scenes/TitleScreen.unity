@@ -1466,6 +1466,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1722640098, guid: eec46e31fc49dea4ebf379b4cb31d585, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140987872738540354, guid: eec46e31fc49dea4ebf379b4cb31d585, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.293
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140987872738540354, guid: eec46e31fc49dea4ebf379b4cb31d585, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263292810139434234, guid: eec46e31fc49dea4ebf379b4cb31d585, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5924399491194164040, guid: eec46e31fc49dea4ebf379b4cb31d585, type: 3}
       propertyPath: m_Name
       value: Player 1
