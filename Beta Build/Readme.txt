@@ -1,1 +1,0 @@
-playtest form link: https://docs.google.com/forms/d/e/1FAIpQLSexgleT-3Jopbs-kU9I1WP0sBlJAKSZ0LU7q9AdFpR4dgiwsg/viewform?usp=sf_link

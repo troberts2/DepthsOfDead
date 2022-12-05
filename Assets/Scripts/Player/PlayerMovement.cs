@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
          }
+         cheats();
      }
     public IEnumerator Movement()
     {
@@ -230,6 +231,20 @@ public class PlayerMovement : MonoBehaviour
         transform.position = respawnPoint.position;
         playerHealth--;
         healthbar.SetHealth(playerHealth);
+        if(playerHealth < 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(17);
+        }
         iframes = false;
+    }
+    void cheats(){
+        if(Input.GetKey(KeyCode.B) && Input.GetKey(KeyCode.N)){
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject enemy in enemies)
+                Destroy(enemy);
+        }
+        if(Input.GetKey(KeyCode.M)){
+            UnityEngine.SceneManagement.SceneManager.LoadScene(13);
+        }
     }
 }

@@ -6,7 +6,7 @@ public class GrappleHook : MonoBehaviour
 {
     LineRenderer line;
     [SerializeField] private ContactFilter2D grapplableMask;
-    [SerializeField] private float maxDist = 20f;
+    [SerializeField] private float maxDist = 10f;
     [SerializeField] private float grappleSpeed = 10f;
     [SerializeField] private float grappleShootSpeed = 20f;
     [SerializeField] private GameObject harpoon;
