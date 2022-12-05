@@ -18,20 +18,17 @@ public class UpgradeScript : MonoBehaviour
         Debug.Log("damage+");
         pm.baseDamage++;
         gc.clearUpgrades();
-        getUp.Play();
     }
 
     public void AddHealth(){
         Debug.Log("health+");
         pm.playerHealth++;
         gc.clearUpgrades();
-        getUp.Play();
     }
 
     public void AddSpeed(){
         Debug.Log("speed+");
         pm.playerSpeed++;
         gc.clearUpgrades();
-        getUp.Play();
     }
 }
